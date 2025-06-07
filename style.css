@@ -74,7 +74,7 @@ header {
   /* 背景画像の設定 */
   background-image: url('image/rev_up_life.jpg'); /* 背景画像 */
   background-size: cover; /* 画像をセクションいっぱいに引き伸ばす */
-  background-position: 30% center;
+  background-position: center;
   background-attachment: fixed; /* スクロールしても背景画像を固定する（お好みで）*/
 
   /* 中のテキストを天地左右中央に配置するための魔法 */
@@ -390,6 +390,7 @@ footer ul {
     /* これが拡大表示される問題の主な解決策です */
     background-attachment: scroll;
     height: 60vh; /* スマホでは高さを少し抑える */
+    background-position: 30% center;
   }
 
   /* 見出しの文字サイズを少し小さくして、はみ出ないようにする */
