@@ -1,0 +1,381 @@
+/* ヘッダー全体のデザイン */
+header {
+  display: flex; /* ロゴとアイコンを横並びにするための魔法の言葉 */
+  justify-content: space-between; /* 両端に配置する */
+  align-items: center; /* 上下の位置を中央揃えにする */
+  padding: 15px 30px; /* 上下の余白を15px, 左右の余白を30pxあける */
+  background-color: #f2f2f2; /* ヘッダーの背景色を薄いグレーに */
+}
+
+/* ロゴのデザイン (今はまだ文字ですが) */
+.logo {
+  font-size: 24px; /* 文字のサイズ */
+  font-weight: bold; /* 文字を太くする */
+}
+
+/* ハンバーガーアイコンのボタン自体のデザイン */
+.hamburger-icon {
+  background: transparent; /* 背景を透明にする */
+  border: none; /* 枠線を消す */
+  cursor: pointer; /* マウスカーソルを乗せると指の形になる */
+}
+
+/* ハンバーガーアイコンの三本線のデザイン */
+.hamburger-icon span {
+  display: block; /* 線をブロック要素にする */
+  width: 30px; /* 線の幅 */
+  height: 3px; /* 線の高さ（太さ） */
+  background-color: #333333; /* 線の色を濃いグレーに */
+  margin: 6px 0; /* 線と線の間の余白 */
+}
+
+/* ナビゲーションメニューを隠す */
+.navigation-menu {
+  display: none; /* 表示しない、という指定 */
+}
+/* ===== ここから追記 ===== */
+
+/* メニューのリストの黒丸（・）を消す */
+.navigation-menu ul {
+  list-style: none;
+}
+
+/* メニュー項目のリンクのデザイン */
+.navigation-menu li a {
+  display: block; /* クリックできる範囲を広げる */
+  padding: 15px 30px; /* 余白 */
+  text-decoration: none; /* リンクの下線を消す */
+  color: #333333; /* 文字の色 */
+  border-bottom: 1px solid #f2f2f2; /* 項目ごとの区切り線 */
+}
+
+/* マウスカーソルを乗せたら背景色を変える */
+.navigation-menu li a:hover {
+  background-color: #fafafa;
+}
+
+/* JavaScriptによって activeクラス が付与されたときのメニューのデザイン */
+.navigation-menu.active {
+  display: block; /* ★ noneだったものを block にして表示する */
+  position: absolute; /* ヘッダーを基準に位置を固定する */
+  top: 72px; /* ヘッダーのすぐ下あたりに配置 (ヘッダーの高さに合わせて調整) */
+  left: 0;
+  width: 100%; /* 横幅を画面いっぱいに */
+  background-color: white; /* 背景は白 */
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1); /* ちょっとリッチに見える影をつける */
+}
+/* ===== ここから追記 ===== */
+
+/* ヒーローセクション全体のデザイン */
+.hero {
+  height: 85vh; /* 画面の高さの85%をこのセクションの高さにする */
+  color: white; /* 中の文字の色を白にする */
+
+  /* 背景画像の設定 */
+  background-image: url('Image/rev_up_life.jpg'); /* 背景画像 */
+  background-size: cover; /* 画像をセクションいっぱいに引き伸ばす */
+  background-position: center; /* 画像の中央部分を優先的に表示 */
+  background-attachment: fixed; /* スクロールしても背景画像を固定する（お好みで）*/
+
+  /* 中のテキストを天地左右中央に配置するための魔法 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+/* ヒーローセクション内のテキストのデザイン */
+.hero-text h1 {
+  font-size: 4rem; /* とても大きな文字サイズ */
+  margin-bottom: 1rem; /* 見出しと下の段落の間の余白 */
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7); /* 文字に影をつけて読みやすくする */
+}
+
+.hero-text p {
+  font-size: 1.2rem; /* 少し大きめの文字サイズ */
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7); /* こちらにも少し影を */
+}
+/* ===== ここから追記 ===== */
+
+/* 製品紹介セクション */
+.products {
+  padding: 80px 30px; /* セクションの上下にたっぷり余白をとる */
+  background-color: #fff; /* 背景は白 */
+}
+
+/* セクションのタイトル */
+.section-title {
+  text-align: center; /* 中央揃え */
+  font-size: 2.5rem; /* 少し大きめのサイズ */
+  margin-bottom: 60px; /* タイトルとカードの間の余白 */
+  font-weight: bold;
+  color: #333;
+}
+
+/* 3つのカードを囲むコンテナ */
+.product-container {
+  display: flex; /* カードを横並びにする魔法 */
+  justify-content: center; /* 中央に寄せる */
+  gap: 40px; /* カードとカードの間の隙間 */
+  flex-wrap: wrap; /* 画面が狭くなったら自動で折り返す（重要！）*/
+}
+
+/* 製品カードのデザイン */
+.product-card {
+  width: 340px; /* カードの横幅 */
+  background-color: #f9f9f9; /* カードの背景色 */
+  border-radius: 15px; /* カードの角を丸くする */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08); /* 立体的に見せる影 */
+  overflow: hidden; /* 角丸からはみ出た画像を隠す */
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s; /* アニメーションの設定 */
+}
+
+/* カードにマウスを乗せたら少し浮き上がるように見せる */
+.product-card:hover {
+  transform: translateY(-10px); /* Y軸に-10px移動（上に動く）*/
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12); /* 影を濃くする */
+}
+
+/* カード内の画像 */
+.product-card img {
+  width: 100%; /* 親の要素（カード）の幅いっぱいに広げる */
+  height: 240px; /* 高さを固定 */
+  object-fit: cover; /* 比率を保ったまま領域を埋める */
+}
+
+/* カード内の製品名 */
+.product-card h3 {
+  font-size: 1.5rem;
+  margin: 25px 0 15px 0; /* 上下と下の余白 */
+}
+
+/* カード内の説明文 */
+.product-card p {
+  font-size: 1rem;
+  color: #666;
+  padding: 0 25px; /* 左右に余白をとって読みやすく */
+  margin-bottom: 25px;
+}
+
+/* 「詳細を見る」ボタンのデザイン */
+.btn {
+  display: inline-block; /* インラインブロック要素にする */
+  background-color: #333;
+  color: white;
+  padding: 12px 25px;
+  margin-bottom: 30px; /* ボタンとカード下部の余白 */
+  text-decoration: none; /* リンクの下線を消す */
+  border-radius: 5px;
+  font-weight: bold;
+  transition: background-color 0.3s; /* アニメーションの設定 */
+}
+
+/* ボタンにマウスを乗せたら色を変える */
+.btn:hover {
+  background-color: #555;
+}
+/* ===== ここから追記 ===== */
+
+/* フッター全体のデザイン */
+footer {
+  background-color: #222; /* 背景色を黒に近いグレーに */
+  color: #ccc; /* テキストの色を明るいグレーに */
+  padding: 50px 30px; /* 上下の余白を多めに */
+  text-align: center; /* 中のテキストを中央揃えに */
+}
+
+/* フッター内のリンクとコピーライトを囲むコンテナ */
+.footer-container {
+  max-width: 1200px; /* 最大幅を指定 */
+  margin: 0 auto; /* 中央寄せの定型句 */
+}
+
+/* ページリンクとSNSリンクのグループ */
+.footer-links,
+.footer-social {
+  margin-bottom: 20px; /* 下に余白をとる */
+}
+
+/* フッター内のすべてのリンク */
+footer a {
+  color: #ccc; /* リンクの文字色 */
+  text-decoration: none; /* リンクの下線を消す */
+  margin: 0 15px; /* リンクの左右の余白 */
+  transition: color 0.3s; /* 色が変わるアニメーション */
+}
+
+/* フッター内のリンクにマウスを乗せたら */
+footer a:hover {
+  color: #fff; /* 文字色を白にする */
+}
+
+/* フッター内のリストの点（マーカー）を消し、余白をリセットする */
+footer ul {
+  list-style: none; /* これで点が消えます */
+  padding: 0; /* ブラウザが自動でつける左側の余白も消します */
+  margin: 0; /* 同じく上下の余白も消します */
+}
+
+/* コピーライト表記 */
+.copyright {
+  font-size: 0.9rem;
+  color: #888; /* 少し暗めのグレー */
+  margin-top: 20px; /* 上のSNSリンクとの間に余白をとる */
+}
+
+/* ロゴ画像のサイズ調整 */
+.logo img {
+  height: 40px; /* 高さを40pxに固定（お好みのサイズに調整してください） */
+  width: auto; /* 横幅は比率を保ったまま自動調整 */
+}
+/* ===== ここから追記 (詳細ページ用) ===== */
+
+.product-detail-container {
+  max-width: 900px; /* コンテンツの最大幅 */
+  margin: 60px auto; /* 上下に60px、左右は自動で中央寄せ */
+  padding: 0 30px; /* 左右の余白 */
+}
+
+.product-detail-container h1 {
+  font-size: 2.8rem;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.product-detail-image {
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 40px;
+}
+
+.product-description h2,
+.product-specs h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #f2f2f2; /* 見出しの下線 */
+  padding-bottom: 10px;
+}
+
+.product-description p {
+  font-size: 1.1rem;
+  line-height: 1.8; /* 行間を広げて読みやすく */
+  margin-bottom: 20px;
+}
+
+/* スペック表のデザイン */
+.product-specs table {
+  width: 100%;
+  border-collapse: collapse; /* セルの境界線を一本にする */
+  font-size: 1.1rem;
+}
+
+.product-specs th,
+.product-specs td {
+  border-bottom: 1px solid #ddd; /* 各行の下線 */
+  padding: 15px 10px;
+  text-align: left;
+}
+
+.product-specs th {
+  width: 35%; /* 見出しセルの幅 */
+  background-color: #f9f9f9;
+  font-weight: bold;
+}
+/* ===== ここから追記 (About Usページ用) ===== */
+
+/* 詳細ページやAboutページなど、下層ページで共通して使えるコンテナ */
+.page-container {
+  max-width: 900px;
+  margin: 60px auto;
+  padding: 0 30px;
+}
+
+/* 下層ページのメインタイトル */
+.page-title {
+  font-size: 2.8rem;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+/* 下層ページのメイン画像 */
+.page-main-image {
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 50px;
+}
+
+/* 下層ページのセクションごとの見出し */
+.page-section h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #f2f2f2;
+  padding-bottom: 10px;
+}
+
+/* 下層ページの段落テキスト */
+.page-section p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin-bottom: 50px; /* セクション間の余白を調整 */
+}
+
+/* 会社概要テーブルのスタイル */
+.company-profile {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 1.1rem;
+}
+
+.company-profile th,
+.company-profile td {
+  border: 1px solid #ddd; /* 枠線を追加 */
+  padding: 15px;
+  text-align: left;
+}
+
+.company-profile th {
+  width: 30%;
+  background-color: #f9f9f9;
+}
+/* ===== ここから追記 (連絡先フォーム用) ===== */
+
+.contact-form {
+  margin-top: 40px;
+}
+
+.form-group {
+  margin-bottom: 25px;
+}
+
+.form-group label {
+  display: block; /* ラベルをブロック要素にして改行させる */
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%; /* 横幅を親の要素いっぱいに */
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-family: inherit; /* ページ全体のフォント設定を継承 */
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+/* 入力欄がフォーカスされた時（クリックされた時）のデザイン */
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none; /* デフォルトの青い枠線を消す */
+  border-color: #555; /* 枠線の色を濃くする */
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1); /* ほんのり影をつける */
+}
+
+/* 送信ボタンのデザイン */
+.contact-form .btn {
+  width: 100%;
+  padding: 15px;
+  font-size: 1.2rem;
+}
