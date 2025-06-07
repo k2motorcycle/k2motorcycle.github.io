@@ -379,3 +379,36 @@ footer ul {
   padding: 15px;
   font-size: 1.2rem;
 }
+/* ===== スマートフォン用の設定 (ここから追記) ===== */
+
+@media (max-width: 768px) {
+  /* 画面幅が768px以下の場合に、この中のスタイルが適用されます */
+
+  /* ヒーローセクションのスマホ用設定 */
+  .hero {
+    /* スマホでは背景画像を固定せず、ページと一緒にスクロールさせる */
+    /* これが拡大表示される問題の主な解決策です */
+    background-attachment: scroll;
+    height: 60vh; /* スマホでは高さを少し抑える */
+  }
+
+  /* 見出しの文字サイズを少し小さくして、はみ出ないようにする */
+  .hero-text h1 {
+    font-size: 2.5rem;
+  }
+
+  .hero-text p {
+    font-size: 1rem;
+  }
+
+  /* 製品カードが自然に縦に並ぶように調整 */
+  .product-container {
+    flex-direction: column; /* 横並びを縦並びに変更 */
+    align-items: center; /* 中央に寄せる */
+  }
+
+  .product-card {
+    width: 90%; /* スマホでは画面幅に合わせて広げる */
+    max-width: 340px; /* ただし、広がりすぎないように最大幅は指定 */
+  }
+}
