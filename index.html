@@ -4,26 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>K2motorcycle JAPAN</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
   <header>
     <div class="logo">
-      <img src="image/k2logo.jpeg" alt="あなたのサイト名 ロゴ">
+      <img src="image/k2logo.jpeg" alt="K2motorcycle JAPAN ロゴ">
     </div>
-
     <button class="hamburger-icon">
       <span></span>
       <span></span>
       <span></span>
     </button>
-
     <nav class="navigation-menu">
       <ul>
         <li><a href="index.html">TOP</a></li>
         <li><a href="about.html">About Us</a></li>
-        <li><a href="product-1.html">車種1</a></li>
+        <li><a href="news.html">ニュース一覧</a></li> <li><a href="product-1.html">車種1</a></li>
         <li><a href="product-2.html">車種2</a></li>
         <li><a href="product-3.html">車種3</a></li>
         <li><a href="contact.html">連絡先</a></li>
@@ -31,55 +31,144 @@
     </nav>
   </header>
   <main>
-  <section class="hero">
-    <div class="hero-text">
-      <h1>MAKE YOUR OWN WAY</h1>
-      <p>REV UP LIFE</p>
+    <div class="swiper hero-slider">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <img src="image/palma250se_950_633.jpg" alt="車種1の画像" class="hero-product-image">
+          <div class="hero-text">
+            <h1>車種1の名前</h1>
+            <p>空冷トレール</p>
+            <a href="product-1.html" class="btn-outline">詳細を見る</a>
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <img src="image/supermax300_950_633.jpg" alt="車種2の画像" class="hero-product-image">
+          <div class="hero-text">
+            <h1>車種2の名前</h1>
+            <p>空冷レーシングスペックトレール</p>
+            <a href="product-2.html" class="btn-outline">詳細を見る</a>
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <img src="image/race300_950_633.jpg" alt="車種3の画像" class="hero-product-image">
+          <div class="hero-text">
+            <h1>車種3の名前</h1>
+            <p>水冷レーシングスペックトレール</p>
+            <a href="product-3.html" class="btn-outline">詳細を見る</a>
+          </div>
+        </div>
+      </div>
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
     </div>
-  </section>
-   <section class="products">
-    <h2 class="section-title">MODELS</h2>
-    <div class="product-container">
-      <div class="product-card">
-        <img src="image/palma_250_blue.jpg" alt="車種1の画像">
-        <h3>車種1の名前</h3>
-        <p>空冷トレール</p>
-        <a href="product-1.html" class="btn">詳細を見る</a>
-      </div>
-
-      <div class="product-card">
-        <img src="image/super_max_250_red.jpg" alt="車種2の画像">
-        <h3>車種2の名前</h3>
-        <p>空冷レーシングスペックトレール</p>
-        <a href="product-2.html" class="btn">詳細を見る</a>
-      </div>
-
-      <div class="product-card">
-        <img src="image/race_300_orange.jpg" alt="車種3の画像">
-        <h3>車種3の名前</h3>
-        <p>水冷レーシングスペックトレール</p>
-        <a href="product-3.html" class="btn">詳細を見る</a>
-      </div>
+    <section class="pagination-container">
+      <div class="swiper-pagination"></div>
+    </section>
+    <section class="news-section">
+  <h2 class="section-title">Latest News</h2>
+  <div class="news-container">
+    <article class="news-card">
+      <a href="#">
+        <img src="image/news1.jpg" alt="ニュース1の画像">
+        <div class="news-card-content">
+          <time class="news-date">2025/08/04</time>
+          <h3 class="news-title">ここにニュースのタイトルが入ります。</h3>
+        </div>
+      </a>
+    </article>
+    <article class="news-card">
+      <a href="#">
+        <img src="image/news2.jpg" alt="ニュース2の画像">
+        <div class="news-card-content">
+          <time class="news-date">2025/07/28</time>
+          <h3 class="news-title">新しいモデルの発表に関するお知らせです。</h3>
+        </div>
+      </a>
+    </article>
+    <article class="news-card">
+      <a href="#">
+        <img src="image/news3.jpg" alt="ニュース3の画像">
+        <div class="news-card-content">
+          <time class="news-date">2025/07/11</time>
+          <h3 class="news-title">イベント開催のお知らせ：〇〇サーキットにて。</h3>
+        </div>
+      </a>
+    </article>
+    <article class="news-card">
+      <a href="#">
+        <img src="image/news4.jpg" alt="ニュース4の画像">
+        <div class="news-card-content">
+          <time class="news-date">2025/05/12</time>
+          <h3 class="news-title">メンテナンスに関する重要なお知らせ。</h3>
+        </div>
+      </a>
+    </article>
+  </div>
+</section>
+  </main>
+<section class="products">
+  <h2 class="section-title">Model Range</h2>
+  <div class="product-container">
+    <div class="product-card">
+      <img src="image/palma_250_blue.jpg" alt="車種1の画像">
+      <h3>車種1の名前</h3>
+      <p>空冷トレール</p>
+      <a href="product-1.html" class="btn">詳細を見る</a>
     </div>
-  </section>
-</main>
+    <div class="product-card">
+      <img src="image/super_max_250_red.jpg" alt="車種2の画像">
+      <h3>車種2の名前</h3>
+      <p>空冷レーシングスペックトレール</p>
+      <a href="product-2.html" class="btn">詳細を見る</a>
+    </div>
+    <div class="product-card">
+      <img src="image/race_300_orange.jpg" alt="車種3の画像">
+      <h3>車種3の名前</h3>
+      <p>水冷レーシングスペックトレール</p>
+      <a href="product-3.html" class="btn">詳細を見る</a>
+    </div>
+  </div>
+</section>
 <footer>
-  <div class="footer-container">
-    <div class="footer-links">
-      <a href="about.html">About Us</a>
-      <a href="product-1.html">車種1</a>
-      <a href="product-2.html">車種2</a>
-      <a href="product-3.html">車種3</a>
-      <a href="contact.html">連絡先</a>
+  <div class="footer-main">
+    <div class="footer-column">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="contact.html">Contact Us</a></li>
+        <li><a href="#">Recycle</a></li>
+        <li><a href="#">Media Center</a></li>
+      </ul>
     </div>
-    <div class="footer-social">
-      <a href="#">Facebook</a>
-      <a href="#">Twitter</a>
-      <a href="#">Instagram</a>
+    <div class="footer-column">
+      <h4>News & Events</h4>
+      <ul>
+        <li><a href="news.html">Latest News & Events</a></li>
+      </ul>
     </div>
-    <p class="copyright">&copy; 2025 あなたのサイト名. All Rights Reserved.</p>
+    <div class="footer-column">
+      <h4>Model Range</h4>
+      <ul>
+        <li><a href="product-1.html">車種1の名前</a></li>
+        <li><a href="product-2.html">車種2の名前</a></li>
+        <li><a href="product-3.html">車種3の名前</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+   <div class="footer-social">
+     <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+     <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+     <a href="#"><i class="fa-brands fa-instagram"></i></a>
+     <a href="#"><i class="fa-brands fa-youtube"></i></a>
+   </div>
+  </div>
+  <div class="footer-copyright">
+    <p>東京都公安委員会認可番号 第号</p>
   </div>
 </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   <script src="script.js"></script>
+
 </body>
 </html>
