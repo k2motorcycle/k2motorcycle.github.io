@@ -440,7 +440,7 @@ footer {
     gap: 20px; /* ← 項目間の隙間を設定する */
   }
 .footer-column {
-  flex-basis: 30%;
+  flex-basis: 28%;
   margin-bottom: 20px;
   text-align: left;
 }
