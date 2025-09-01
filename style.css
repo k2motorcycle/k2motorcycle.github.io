@@ -215,9 +215,14 @@ header {
 }
 
 .news-card {
-  width: 270px; /* カードの幅 */
+  width: 270px;
   border: 1px solid #e0e0e0;
   transition: box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0; /* ← この行を追加 */
 }
 
 .news-card:hover {
@@ -237,9 +242,26 @@ header {
 }
 
 .news-card-content {
-  padding: 20px;
+  padding: 20px; /* ← 元のパディングに戻す */
+  box-sizing: border-box;
+  /* ここから下が、ホバー時にスライドアップする部分のスタイル */
+  position: absolute; /* 親要素を基準に絶対配置 */
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.95);
+  transform: translateY(100%); /* 初期状態では完全に下に隠す */
+  transition: transform 0.3s ease-out; /* スライドアップのアニメーション */
 }
-
+/* ↓ この新しいCSSルールを追記 ↓ */
+.news-card-always-visible {
+  padding: 20px; /* 常に表示される部分のパディング */
+  text-align: left; /* テキスト左揃え */
+}
+/* ↓ このルールを新しく追加 */
+.news-card:hover .news-card-content {
+  transform: translateY(0%);
+}
 .news-date {
   font-size: 14px;
   color: #777;
@@ -432,6 +454,12 @@ footer {
   .hero-slider .hero-text p {
     font-size: 1rem;
   }
+  .news-card {
+  width: 170px; /* PC用の270pxから少し小さくします */
+}
+.news-card .news-title {
+  font-size: 14px; /* タイトルの文字サイズを少し小さくします */
+}
   /* フッターのスマホ用設定 */
   .footer-main {
     flex-direction: row; /* ← columnからrowに変更：横並びにする */
@@ -445,10 +473,10 @@ footer {
   text-align: left;
 }
   .footer-column h4 {
-      text-align: center; /* タイトルも中央揃えに */
+      text-align: center;
   }
   .footer-column ul {
-      text-align: center; /* リストも中央揃えに */
+      text-align: center;
   }
   .footer-bottom {
     flex-direction: column;
@@ -457,6 +485,10 @@ footer {
   .footer-legal {
     margin-bottom: 15px;
   }
+}
+.news-grid-item:hover .news-grid-content {
+  transform: translateY(0);
+  opacity: 1;
 }
 /* ===================================
    ニュースページ
@@ -469,11 +501,8 @@ footer {
 
 .news-grid-item {
   border: 1px solid #e0e0e0;
-  transition: box-shadow 0.3s ease;
-}
-
-.news-grid-item:hover {
-  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+  position: relative; /* 子要素を絶対配置する際の基準 */
+  overflow: hidden;   /* はみ出した子要素を隠す */
 }
 
 .news-grid-item a {
@@ -486,7 +515,6 @@ footer {
   width: 100%;
   padding-top: 66.66%; /* アスペクト比 3:2 */
   position: relative;
-  overflow: hidden;
 }
 
 .news-image-container img {
@@ -496,22 +524,34 @@ footer {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: transform 0.4s ease; /* ホバー時のズーム効果 */
+}
+
+.news-grid-item:hover .news-image-container img {
+  transform: scale(1.1); /* ホバー時に画像を少し拡大 */
 }
 
 .news-grid-content {
-  padding: 20px 25px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: linear-gradient(to top, rgba(0,0,0,0.8), transparent); /* 画像の下部に黒いグラデーションを追加 */
+  padding: 40px 25px 20px 25px;
+  box-sizing: border-box;
 }
 
 .news-date {
   font-size: 14px;
-  color: #777;
+  color: #fff; /* 文字色を白に */
 }
 
 .news-title-small {
   font-size: 18px;
   font-weight: bold;
-  margin: 10px 0 0 0;
+  margin: 5px 0 0 0;
   line-height: 1.5;
+  color: #fff; /* 文字色を白に */
 }
 /* ===================================
    ニュース記事詳細ページ
