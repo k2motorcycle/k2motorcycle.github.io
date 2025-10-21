@@ -1,7 +1,8 @@
 /* ===================================
    基本設定
    =================================== */
-body, html {
+body,
+html {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
@@ -89,40 +90,50 @@ header {
   background-color: #000;
   position: relative;
   --swiper-navigation-color: #ffffff;
-  border-top: 5px solid #007bff; /* 青い線 */
+  border-top: 5px solid #007bff;
+  /* 青い線 */
 }
 
 .hero-slider .swiper-slide {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start; /* ← 上揃えに変更 */
+  justify-content: flex-start;
+  /* ← 上揃えに変更 */
   align-items: center;
   text-align: center;
   color: white;
-  padding: 0 20px 20px 20px; /* ← 上の隙間(padding)を0にする */
+  padding: 0 20px 20px 20px;
+  /* ← 上の隙間(padding)を0にする */
   box-sizing: border-box;
 }
 
 /* PC用のスタイル（画面幅が769px以上の場合） */
 @media (min-width: 769px) {
   .hero-slider .swiper-slide {
-    flex-direction: row; /* 横並び */
-    justify-content: space-between; /* 左右に振り分け */
+    flex-direction: row;
+    /* 横並び */
+    justify-content: space-between;
+    /* 左右に振り分け */
     align-items: flex-start;
-    padding: 0 8%; /* ← 左右の余白を追加 */
+    padding: 0 8%;
+    /* ← 左右の余白を追加 */
   }
 
   .hero-text {
     width: 45%;
     text-align: left;
-    order: 1; /* テキストが先 */
+    order: 1;
+    /* テキストが先 */
     align-self: center;
   }
 
   .hero-product-image {
-    width: 50%;  /* 幅をスライドの50%に固定 */
-    height: 70%; /* 高さをスライドの70%に固定 */
-    object-fit: contain; /* 比率を保ったまま枠内に収める */
+    width: 50%;
+    /* 幅をスライドの50%に固定 */
+    height: 70%;
+    /* 高さをスライドの70%に固定 */
+    object-fit: contain;
+    /* 比率を保ったまま枠内に収める */
     order: 2;
   }
 }
@@ -186,6 +197,7 @@ header {
   opacity: 1;
   transform: scale(1.4);
 }
+
 /* ===================================
    News & Events セクション
    =================================== */
@@ -205,13 +217,17 @@ header {
 
 .news-container {
   display: flex;
-  justify-content: flex-start; /* 左端から開始するように変更 */
+  justify-content: flex-start;
+  /* 左端から開始するように変更 */
   gap: 30px;
-  flex-wrap: nowrap; /* ← 折り返さず、横一列を維持 */
+  flex-wrap: nowrap;
+  /* ← 折り返さず、横一列を維持 */
   max-width: 1200px;
   margin: 0 auto;
-  overflow-x: auto; /* ← 横にはみ出した部分をスクロール可能にする */
-  padding: 10px; /* スクロール領域の内側に少し余白を追加 */
+  overflow-x: auto;
+  /* ← 横にはみ出した部分をスクロール可能にする */
+  padding: 10px;
+  /* スクロール領域の内側に少し余白を追加 */
 }
 
 .news-card {
@@ -222,11 +238,12 @@ header {
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  flex-shrink: 0; /* ← この行を追加 */
+  flex-shrink: 0;
+  /* ← この行を追加 */
 }
 
 .news-card:hover {
-  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
 }
 
 .news-card a {
@@ -242,26 +259,35 @@ header {
 }
 
 .news-card-content {
-  padding: 20px; /* ← 元のパディングに戻す */
+  padding: 20px;
+  /* ← 元のパディングに戻す */
   box-sizing: border-box;
   /* ここから下が、ホバー時にスライドアップする部分のスタイル */
-  position: absolute; /* 親要素を基準に絶対配置 */
+  position: absolute;
+  /* 親要素を基準に絶対配置 */
   bottom: 0;
   left: 0;
   width: 100%;
   background-color: rgba(255, 255, 255, 0.95);
-  transform: translateY(100%); /* 初期状態では完全に下に隠す */
-  transition: transform 0.3s ease-out; /* スライドアップのアニメーション */
+  transform: translateY(100%);
+  /* 初期状態では完全に下に隠す */
+  transition: transform 0.3s ease-out;
+  /* スライドアップのアニメーション */
 }
+
 /* ↓ この新しいCSSルールを追記 ↓ */
 .news-card-always-visible {
-  padding: 20px; /* 常に表示される部分のパディング */
-  text-align: left; /* テキスト左揃え */
+  padding: 20px;
+  /* 常に表示される部分のパディング */
+  text-align: left;
+  /* テキスト左揃え */
 }
+
 /* ↓ このルールを新しく追加 */
 .news-card:hover .news-card-content {
   transform: translateY(0%);
 }
+
 .news-date {
   font-size: 14px;
   color: #777;
@@ -273,12 +299,14 @@ header {
   margin: 10px 0 0 0;
   line-height: 1.5;
 }
+
 /* ===================================
    製品紹介セクション (カード型)
    =================================== */
 .products {
   padding: 80px 40px;
-  background-color: #f8f8f8; /* 背景色を少し変えて区別 */
+  background-color: #f8f8f8;
+  /* 背景色を少し変えて区別 */
 }
 
 .products .section-title {
@@ -344,6 +372,7 @@ header {
 .btn:hover {
   background-color: #555;
 }
+
 /* ===================================
    フッター (新しいデザイン)
    =================================== */
@@ -356,7 +385,8 @@ footer {
 .footer-main {
   background-color: #f8f8f8;
   display: flex;
-  justify-content: center; /* ← 中央配置に変更 */
+  justify-content: center;
+  /* ← 中央配置に変更 */
   padding: 60px 40px;
   border-bottom: 1px solid #e0e0e0;
   gap: 100px;
@@ -397,7 +427,8 @@ footer {
   background-color: #333a40;
   color: #fff;
   display: flex;
-  justify-content: center; /* ← これが左右に振り分けるための重要な指定です */
+  justify-content: center;
+  /* ← これが左右に振り分けるための重要な指定です */
   align-items: center;
   padding: 20px 40px;
 }
@@ -417,10 +448,12 @@ footer {
   margin-left: 25px;
   font-size: 24px;
 }
+
 .footer-social a i {
   color: #fff;
   transition: color 0.3s ease;
 }
+
 .footer-copyright {
   background-color: #333a40;
   color: #aaa;
@@ -437,59 +470,128 @@ footer {
   header {
     padding: 0px 0px;
   }
-.hero-product-image {
-    max-width: 60%; /* スマホでは横幅を90%に */
-    max-height: 40%; /* 高さをスライダーの40%に制限 */
-    margin-bottom: 30px; /* テキストとの間に余白を追加 */
-    order: 1; /* 表示順を1番目に (画像が先) */
+
+  .hero-product-image {
+    max-width: 60%;
+    /* スマホでは横幅を90%に */
+    max-height: 40%;
+    /* 高さをスライダーの40%に制限 */
+    margin-bottom: 30px;
+    /* テキストとの間に余白を追加 */
+    order: 1;
+    /* 表示順を1番目に (画像が先) */
   }
-.hero-text {
+
+  .hero-text {
     width: 90%;
     text-align: center;
-    order: 2; /* 表示順を2番目に (テキストが後) */
+    order: 2;
+    /* 表示順を2番目に (テキストが後) */
   }
+
   .hero-slider .hero-text h1 {
     font-size: 2rem;
   }
+
   .hero-slider .hero-text p {
     font-size: 1rem;
   }
+
   .news-card {
-  width: 170px; /* PC用の270pxから少し小さくします */
-}
-.news-card .news-title {
-  font-size: 14px; /* タイトルの文字サイズを少し小さくします */
-}
+    width: 170px;
+    /* PC用の270pxから少し小さくします */
+  }
+
+  .news-card .news-title {
+    font-size: 14px;
+    /* タイトルの文字サイズを少し小さくします */
+  }
+
   /* フッターのスマホ用設定 */
   .footer-main {
-    flex-direction: row; /* ← columnからrowに変更：横並びにする */
-    flex-wrap: wrap; /* ← 項目が多ければ折り返す */
-    justify-content: space-around; /* ← 項目を均等に配置する */
-    gap: 20px; /* ← 項目間の隙間を設定する */
+    flex-direction: row;
+    /* ← columnからrowに変更：横並びにする */
+    flex-wrap: wrap;
+    /* ← 項目が多ければ折り返す */
+    justify-content: space-around;
+    /* ← 項目を均等に配置する */
+    gap: 20px;
+    /* ← 項目間の隙間を設定する */
   }
-.footer-column {
-  flex-basis: 28%;
-  margin-bottom: 20px;
-  text-align: left;
-}
+
+  .footer-column {
+    flex-basis: 28%;
+    margin-bottom: 20px;
+    text-align: left;
+  }
+
   .footer-column h4 {
-      text-align: center;
+    text-align: center;
   }
+
   .footer-column ul {
-      text-align: center;
+    text-align: center;
   }
+
   .footer-bottom {
     flex-direction: column;
     gap: 15px;
   }
+
   .footer-legal {
     margin-bottom: 15px;
   }
+
+  /* About Usページのスマホ用画像サイズ調整 */
+  .page-main-image {
+    width: 100%;
+    /* 横幅を画面いっぱいに */
+    height: auto;
+    /* 高さは自動で調整 */
+  }
 }
+
 .news-grid-item:hover .news-grid-content {
   transform: translateY(0);
   opacity: 1;
 }
+
+/* ===================================
+   製品スペックページ
+   =================================== */
+.product-detail-image {
+  width: 100%;
+}
+.product-description {
+  padding-top: 16px;
+}
+.product-specs {
+  padding-top: 16px;
+}
+.spec-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.spec-table th,
+.spec-table td {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  text-align: left;
+  border-bottom: 1px solid #e0e0e0;
+}
+.spec-table th {
+  padding-left: 8px;
+  padding-right: 12px;
+  width: 20%;
+  background-color: #f8f9fa;
+  font-weight: 400;
+}
+@media screen and (max-width: 768px) {
+  .spec-table th {
+    width: 40%;
+  }
+}
+
 /* ===================================
    ニュースページ
    =================================== */
@@ -501,8 +603,10 @@ footer {
 
 .news-grid-item {
   border: 1px solid #e0e0e0;
-  position: relative; /* 子要素を絶対配置する際の基準 */
-  overflow: hidden;   /* はみ出した子要素を隠す */
+  position: relative;
+  /* 子要素を絶対配置する際の基準 */
+  overflow: hidden;
+  /* はみ出した子要素を隠す */
 }
 
 .news-grid-item a {
@@ -513,7 +617,8 @@ footer {
 
 .news-image-container {
   width: 100%;
-  padding-top: 66.66%; /* アスペクト比 3:2 */
+  padding-top: 66.66%;
+  /* アスペクト比 3:2 */
   position: relative;
 }
 
@@ -524,11 +629,13 @@ footer {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.4s ease; /* ホバー時のズーム効果 */
+  transition: transform 0.4s ease;
+  /* ホバー時のズーム効果 */
 }
 
 .news-grid-item:hover .news-image-container img {
-  transform: scale(1.1); /* ホバー時に画像を少し拡大 */
+  transform: scale(1.1);
+  /* ホバー時に画像を少し拡大 */
 }
 
 .news-grid-content {
@@ -536,14 +643,16 @@ footer {
   bottom: 0;
   left: 0;
   width: 100%;
-  background: linear-gradient(to top, rgba(0,0,0,0.8), transparent); /* 画像の下部に黒いグラデーションを追加 */
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+  /* 画像の下部に黒いグラデーションを追加 */
   padding: 40px 25px 20px 25px;
   box-sizing: border-box;
 }
 
 .news-date {
   font-size: 14px;
-  color: #fff; /* 文字色を白に */
+  color: #fff;
+  /* 文字色を白に */
 }
 
 .news-title-small {
@@ -551,13 +660,16 @@ footer {
   font-weight: bold;
   margin: 5px 0 0 0;
   line-height: 1.5;
-  color: #fff; /* 文字色を白に */
+  color: #fff;
+  /* 文字色を白に */
 }
+
 /* ===================================
    ニュース記事詳細ページ
    =================================== */
 .article-container {
-  max-width: 800px; /* 記事の最大幅を少し狭めて読みやすく */
+  max-width: 800px;
+  /* 記事の最大幅を少し狭めて読みやすく */
 }
 
 .article-header {
@@ -607,20 +719,53 @@ footer {
   font-weight: bold;
   color: #333;
 }
+
+/* ===================================
+   Contact Us
+   =================================== */
+.form-group {
+  margin-bottom: 25px;
+}
+
+.form-label {
+  display: block;
+  /* ラベルをブロック要素にして改行させる */
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.form-input {
+  width: 100%;
+  padding: 12px 15px;
+  font-size: 16px;
+  color: #555;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-sizing: border-box;
+  /* paddingを含めてwidth:100%にする */
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
 /* ===================================
    下層ページのレイアウト調整
    =================================== */
-.page-container,
-.product-detail-container {
-  padding-top: 100px; /* ヘッダーの高さ分くらい、上に余白をあける */
+.page-container {
+  margin: 0 auto;
+  max-width: 80%;
+  padding-top: 100px;
+  /* ヘッダーの高さ分くらい、上に余白をあける */
 }
+
 /* ===================================
    フッターのSNSアイコン ホバーカラー
    =================================== */
 
 /* Facebook */
 .footer-social a:hover .fa-facebook-f {
-  color: #1877F2;
+  color: #1877f2;
 }
 
 /* X (Twitter) */
@@ -630,17 +775,30 @@ footer {
 
 /* Instagram */
 .footer-social a:hover .fa-instagram {
-  color: #E1306C;
+  color: #e1306c;
 }
 
 /* YouTube */
 .footer-social a:hover .fa-youtube {
-  color: #FF0000;
+  color: #ff0000;
 }
+
 /* ===================================
    ヒーロースライダー内の画像にフェード効果を適用
    =================================== */
 .hero-product-image {
-  -webkit-mask-image: linear-gradient(to right, transparent, black 20%, black 80%, transparent);
-  mask-image: linear-gradient(to right, transparent, black 20%, black 80%, transparent);
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 20%,
+    black 80%,
+    transparent
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 20%,
+    black 80%,
+    transparent
+  );
 }
