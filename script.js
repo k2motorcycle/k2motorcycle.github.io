@@ -3,20 +3,24 @@ const hamburger = document.querySelector(".hamburger-icon");
 const main = document.querySelector("main");
 const navMenu = document.querySelector(".navigation-menu");
 
-main.addEventListener("click", () => {
-  if (navMenu.classList.contains("active")) {
-    // 'active'クラスを削除する（＝メニューを閉じる）
-    navMenu.classList.remove("active");
-  }
-});
-hamburger.addEventListener("click", () => {
-  navMenu.classList.toggle("active");
-});
+if (main && navMenu) {
+  main.addEventListener("click", () => {
+    if (navMenu.classList.contains("active")) {
+      navMenu.classList.remove("active");
+    }
+  });
+}
 
-// ヒーロースライダー用のコード
-// ヒーロースライダー用のコード（条件付きに変更）
-const heroSlider = document.querySelector(".hero-slider");
-if (heroSlider) {
+if (hamburger) {
+  hamburger.addEventListener("click", () => {
+    navMenu.classList.toggle("active");
+  });
+}
+
+// ヒーロースライダー用のコード（安全策を追加）
+// クラス名 ".hero-slider" が存在する時だけ実行する
+const heroSliderElement = document.querySelector(".hero-slider");
+if (heroSliderElement) {
   const swiper = new Swiper(".hero-slider", {
     direction: "horizontal",
     loop: true,
@@ -35,16 +39,19 @@ if (heroSlider) {
     },
   });
 }
+
 // ニュースデータを読み込んで表示する関数
 async function loadNews() {
   try {
-    const response = await fetch('news.json');
+    const response = await fetch('./news.json');
+    if (!response.ok) throw new Error('Network response was not ok');
+    
     const newsData = await response.json();
 
-    // 1. トップページ用の表示 (最新の4件)
+    // 1. トップページ用の表示 (id="top-news-container")
     const topContainer = document.getElementById('top-news-container');
     if (topContainer) {
-      const topNews = newsData.slice(0, 4); // 最初の4件を取得
+      const topNews = newsData.slice(0, 4);
       topContainer.innerHTML = topNews.map(item => `
         <article class="news-card">
           <a href="${item.url}">
@@ -61,7 +68,7 @@ async function loadNews() {
       `).join('');
     }
 
-    // 2. ニュース一覧ページ用の表示 (全件)
+    // 2. ニュース一覧ページ用の表示 (id="all-news-container")
     const allContainer = document.getElementById('all-news-container');
     if (allContainer) {
       allContainer.innerHTML = newsData.map(item => `
