@@ -15,22 +15,38 @@ html {
 /* ===================================
    ヘッダー
    =================================== */
+/* 新しいヘッダー設定 */
 header {
-  top: 0;
-  left: 0;
+  position: relative;
   width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0px 0px;
-  z-index: 10;
   background-color: #ffffff;
   border-bottom: 1px solid #eeeeee;
+  display: flex;
+  justify-content: space-between; /* 【変更】ロゴを左、アイコンを右に配置 */
+  align-items: center;            /* 【追加】上下の中央に揃える */
+  padding: 5px 20px;              /* 【変更】上下に5px、左右に20pxの余白 */
 }
 
+.logo {
+  display: block;
+  width: 20%;            /* 通常は画面の40%の大きさ */
+  min-width: 250px;      /* 【追加】これ以上小さくならない最小サイズ */
+}
 .logo img {
-  height: 100px;
-  width: 150px;
+  width: 100%;            /* 枠に合わせて広がる */
+  height: auto;           /* 縦横比を維持（1024:161を守る） */
+  display: block;         /* 下の隙間を消す */
+}
+
+/* ハンバーガーアイコンを右上に固定する */
+.hamburger-icon {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 21;
+  display: block;        /* 自然な要素として扱う */
+  padding: 10px;         /* 押しやすいように内側に余白 */
+  margin: 0;             /* 余計なマージンを消す */
 }
 
 .hamburger-icon {
@@ -801,4 +817,155 @@ footer {
     black 80%,
     transparent
   );
+}
+/* ===================================
+   車種ページの名前（大きく派手なデザイン）
+   =================================== */
+.product-hero-title {
+  font-size: 5rem;            /* 文字を特大に */
+  font-weight: 900;           /* 限界まで太く */
+  text-transform: uppercase;  /* アルファベットを大文字に強制 */
+  letter-spacing: -2px;       /* 文字の間隔を詰めて力強く */
+  margin-bottom: 20px;
+  text-align: center;         /* 中央揃え */
+  
+  /* グラデーション文字の設定 */
+  background: linear-gradient(to bottom, #333, #000); 
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  /* 文字の影（立体感を出す） */
+  text-shadow: 4px 4px 0px rgba(0, 123, 255, 0.2); /* K2カラーの青を薄く */
+}
+
+/* スマホでは少しサイズを抑える設定 */
+@media (max-width: 768px) {
+  .product-hero-title {
+    font-size: 3rem;
+  }
+}
+/* ===================================
+   ハスクバーナ風 2カラムレイアウト
+   =================================== */
+
+/* 全体の枠組みを横並びに */
+.product-layout-wrapper {
+  display: flex;
+  gap: 50px;           /* 画像とテキストの間の距離 */
+  align-items: flex-start;
+  margin-top: 50px;
+}
+
+/* 左側（画像）: 60%の幅を確保 */
+.product-image-column {
+  flex: 0 0 60%;
+}
+
+.product-image-column .product-detail-image {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  /* 画像に余計なフェードをかけない場合は以下でリセット */
+  -webkit-mask-image: none;
+  mask-image: none;
+}
+
+/* 右側（テキスト情報）: 40%の幅 */
+.product-info-column {
+  flex: 1;
+  text-align: left;    /* 左揃えに固定 */
+}
+
+/* 車種タイトル（派手な設定を画像風にシンプル化） */
+.product-hero-title {
+  font-size: 4rem !important;  /* サイズを大きく */
+  text-align: left !important; /* 左揃え */
+  background: none !important; /* グラデーション解除 */
+  -webkit-text-fill-color: #333 !important; /* 文字色を濃いグレーに */
+  text-shadow: none !important; /* 影を解除 */
+  margin-bottom: 10px;
+}
+
+/* 価格表示のデザイン（画像にある黄色い下線） */
+.price-container {
+  border-bottom: 2px solid #ffcc00; /* 黄色のライン */
+  padding-bottom: 10px;
+  margin-bottom: 30px;
+  display: inline-block; /* ラインを文字の長さに合わせる */
+}
+
+.price-amount {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-left: 10px;
+}
+
+/* 説明文 */
+.product-description-text {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: #555;
+  margin-bottom: 30px;
+}
+
+/* スペック表の調整 */
+.spec-table th {
+  background-color: transparent !important; /* 背景色を消してスッキリ */
+  font-weight: bold;
+  width: 40%;
+}
+
+/* ===================================
+   スマホ対応：縦並びに戻す
+   =================================== */
+@media (max-width: 992px) {
+  .product-layout-wrapper {
+    flex-direction: column; /* 縦並び */
+  }
+
+  .product-image-column, 
+  .product-info-column {
+    flex: 1 1 100%;
+    width: 100%;
+  }
+
+  .product-hero-title {
+    font-size: 2.5rem !important;
+  }
+}
+/* ===================================
+   縦並びのスペック表示 (リスト形式)
+   =================================== */
+
+.product-specs-vertical {
+    max-width: 800px;      /* 読みやすいように中央に寄せる */
+    margin: 40px auto;     /* 上下に余白を作り、中央寄せ */
+    padding: 0 20px;
+    border-top: 1px solid #eee; /* 上部に区切り線 */
+}
+
+.spec-row {
+    display: flex;
+    justify-content: space-between; /* 項目名を左、数値を右に配置 */
+    padding: 12px 0;
+    border-bottom: 1px solid #f5f5f5; /* 項目ごとの境界線 */
+}
+
+.spec-row span {
+    font-size: 0.95rem;
+    color: #666;           /* 項目名は少し落ち着いた色に */
+}
+
+.spec-row strong {
+    font-size: 1rem;
+    color: #333;           /* 数値はハッキリと表示 */
+    font-weight: 600;
+}
+
+/* スマホ表示での調整 */
+@media (max-width: 768px) {
+    .product-specs-vertical {
+        max-width: 100%;   /* スマホでは画面幅いっぱいにする */
+        margin-top: 30px;
+    }
 }
