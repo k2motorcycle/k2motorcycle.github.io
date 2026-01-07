@@ -49,13 +49,6 @@ header {
   margin: 0;             /* 余計なマージンを消す */
 }
 
-.hamburger-icon {
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  z-index: 21;
-}
-
 .hamburger-icon span {
   background-color: #333333;
   display: block;
@@ -268,10 +261,20 @@ header {
   display: block;
 }
 
+/* ニュースカードの画像を枠内に収めて全体を表示する */
 .news-card img {
   width: 100%;
-  height: auto;
+  height: 180px;         /* 高さは180pxで固定（これで位置が揃います） */
+  object-fit: contain;   /* 【変更】coverからcontainに変えて全体を表示 */
+  background-color: #fff; /* 【追加】余白部分を白にして背景に馴染ませる */
   display: block;
+  padding: 10px;         /* 【追加】少し内側に余白を作るとより綺麗に見えます */
+}
+
+/* 画像の枠に背景色をつけておく（読み込み中などの空白対策） */
+.news-card-image-wrapper {
+  background-color: #f0f0f0;
+  overflow: hidden;
 }
 
 .news-card-content {
@@ -573,48 +576,16 @@ footer {
 }
 
 /* ===================================
-   製品スペックページ
-   =================================== */
-.product-detail-image {
-  width: 100%;
-}
-.product-description {
-  padding-top: 16px;
-}
-.product-specs {
-  padding-top: 16px;
-}
-.spec-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-.spec-table th,
-.spec-table td {
-  padding-top: 20px;
-  padding-bottom: 20px;
-  text-align: left;
-  border-bottom: 1px solid #e0e0e0;
-}
-.spec-table th {
-  padding-left: 8px;
-  padding-right: 12px;
-  width: 20%;
-  background-color: #f8f9fa;
-  font-weight: 400;
-}
-@media screen and (max-width: 768px) {
-  .spec-table th {
-    width: 40%;
-  }
-}
-
-/* ===================================
-   ニュースページ
+   ニュースページ（サイズ制限版）
    =================================== */
 .news-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  /* auto-fit を auto-fill に変更し、1fr ではなく最大 450px に制限します */
+  grid-template-columns: repeat(auto-fill, minmax(300px, 450px)); 
   gap: 30px;
+  justify-content: center; /* 記事が少ない時でも中央に寄せます */
+  margin: 0 auto;
+  max-width: 1400px;       /* グリッド全体の最大幅も制限 */
 }
 
 .news-grid-item {
@@ -706,9 +677,12 @@ footer {
 }
 
 .article-image {
-  width: 100%;
+  display: block;        /* 中央寄せのためにブロック要素にする */
+  width: 100%;           /* 基本は枠に合わせる */
+  max-width: 600px;      /* 【追加】これ以上大きくならない最大サイズ（お好みで調整） */
   height: auto;
-  margin-bottom: 40px;
+  margin: 0 auto 40px;   /* 【追加】左右中央寄せにし、下に40pxの余白 */
+  object-fit: contain;   /* 比率を保つ */
 }
 
 .article-content {
@@ -819,153 +793,215 @@ footer {
   );
 }
 /* ===================================
-   車種ページの名前（大きく派手なデザイン）
-   =================================== */
-.product-hero-title {
-  font-size: 5rem;            /* 文字を特大に */
-  font-weight: 900;           /* 限界まで太く */
-  text-transform: uppercase;  /* アルファベットを大文字に強制 */
-  letter-spacing: -2px;       /* 文字の間隔を詰めて力強く */
-  margin-bottom: 20px;
-  text-align: center;         /* 中央揃え */
-  
-  /* グラデーション文字の設定 */
-  background: linear-gradient(to bottom, #333, #000); 
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-
-  /* 文字の影（立体感を出す） */
-  text-shadow: 4px 4px 0px rgba(0, 123, 255, 0.2); /* K2カラーの青を薄く */
-}
-
-/* スマホでは少しサイズを抑える設定 */
-@media (max-width: 768px) {
-  .product-hero-title {
-    font-size: 3rem;
-  }
-}
-/* ===================================
-   ハスクバーナ風 2カラムレイアウト
+   車種ページ：カタログ風ダークレイアウト
    =================================== */
 
-/* 全体の枠組みを横並びに */
-.product-layout-wrapper {
-  display: flex;
-  gap: 50px;           /* 画像とテキストの間の距離 */
-  align-items: flex-start;
-  margin-top: 50px;
+/* ページ全体のダーク化設定 */
+.product-page-dark {
+    background-color: #1a1a1a; /* 高級感のある黒 */
+    color: #ffffff;
+    min-height: 100vh;
 }
 
-/* 左側（画像）: 60%の幅を確保 */
+.product-hero-section {
+    padding: 80px 0;
+}
+
+/* 2カラムレイアウト（テキスト左、画像右） */
+.product-layout-wrapper.reverse {
+    display: flex;
+    flex-direction: row-reverse; /* 右に配置した画像をPCでは右側に、テキストを左に */
+    gap: 60px;
+    align-items: center;
+}
+
 .product-image-column {
-  flex: 0 0 60%;
+    flex: 0 0 60%;
 }
 
-.product-image-column .product-detail-image {
-  width: 100%;
-  height: auto;
-  object-fit: contain;
-  /* 画像に余計なフェードをかけない場合は以下でリセット */
-  -webkit-mask-image: none;
-  mask-image: none;
+.product-image-column img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
 }
 
-/* 右側（テキスト情報）: 40%の幅 */
 .product-info-column {
-  flex: 1;
-  text-align: left;    /* 左揃えに固定 */
+    flex: 1;
+    text-align: left;
 }
 
-/* 車種タイトル（派手な設定を画像風にシンプル化） */
+/* 車種名：整理版（不要なグラデーション/影を削除） */
 .product-hero-title {
-  font-size: 4rem !important;  /* サイズを大きく */
-  text-align: left !important; /* 左揃え */
-  background: none !important; /* グラデーション解除 */
-  -webkit-text-fill-color: #333 !important; /* 文字色を濃いグレーに */
-  text-shadow: none !important; /* 影を解除 */
-  margin-bottom: 10px;
+    font-size: 5rem !important;
+    font-weight: 900;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    line-height: 1;
+    color: #ffffff !important;
+    -webkit-text-fill-color: initial !important; /* 古い設定をリセット */
+    background: none !important;
+    text-shadow: none !important;
 }
 
-/* 価格表示のデザイン（画像にある黄色い下線） */
+/* 価格・説明文のデザイン */
 .price-container {
-  border-bottom: 2px solid #ffcc00; /* 黄色のライン */
-  padding-bottom: 10px;
-  margin-bottom: 30px;
-  display: inline-block; /* ラインを文字の長さに合わせる */
+    border-bottom: 2px solid #ffcc00; /* アクセントの黄色 */
+    padding-bottom: 10px;
+    margin-bottom: 25px;
+    display: inline-block;
 }
 
 .price-amount {
-  font-size: 1.5rem;
-  font-weight: bold;
-  margin-left: 10px;
+    font-size: 1.8rem;
+    font-weight: bold;
 }
 
-/* 説明文 */
 .product-description-text {
-  font-size: 1rem;
-  line-height: 1.8;
-  color: #555;
-  margin-bottom: 30px;
-}
-
-/* スペック表の調整 */
-.spec-table th {
-  background-color: transparent !important; /* 背景色を消してスッキリ */
-  font-weight: bold;
-  width: 40%;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #cccccc;
+    margin-bottom: 30px;
 }
 
 /* ===================================
-   スマホ対応：縦並びに戻す
+   テクニカルスペック（2列グリッド形式）
    =================================== */
-@media (max-width: 992px) {
-  .product-layout-wrapper {
-    flex-direction: column; /* 縦並び */
-  }
-
-  .product-image-column, 
-  .product-info-column {
-    flex: 1 1 100%;
-    width: 100%;
-  }
-
-  .product-hero-title {
-    font-size: 2.5rem !important;
-  }
-}
-/* ===================================
-   縦並びのスペック表示 (リスト形式)
-   =================================== */
-
-.product-specs-vertical {
-    max-width: 800px;      /* 読みやすいように中央に寄せる */
-    margin: 40px auto;     /* 上下に余白を作り、中央寄せ */
-    padding: 0 20px;
-    border-top: 1px solid #eee; /* 上部に区切り線 */
+.technical-specs {
+    background-color: #262626; /* セクションの区切り */
+    padding: 80px 0;
+    margin-top: 50px;
 }
 
-.spec-row {
+.specs-heading {
+    font-size: 1.8rem;
+    letter-spacing: 3px;
+    border-bottom: 1px solid #444;
+    padding-bottom: 20px;
+    margin-bottom: 40px;
+}
+
+.specs-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2列並び */
+    gap: 15px 60px;
+}
+
+.spec-item {
     display: flex;
-    justify-content: space-between; /* 項目名を左、数値を右に配置 */
+    justify-content: space-between;
+    border-bottom: 1px solid #3d3d3d;
     padding: 12px 0;
-    border-bottom: 1px solid #f5f5f5; /* 項目ごとの境界線 */
 }
 
-.spec-row span {
-    font-size: 0.95rem;
-    color: #666;           /* 項目名は少し落ち着いた色に */
+.spec-item span {
+    color: #999;
+    font-size: 0.9rem;
 }
 
-.spec-row strong {
-    font-size: 1rem;
-    color: #333;           /* 数値はハッキリと表示 */
+.spec-item strong {
+    color: #fff;
     font-weight: 600;
 }
 
-/* スマホ表示での調整 */
-@media (max-width: 768px) {
-    .product-specs-vertical {
-        max-width: 100%;   /* スマホでは画面幅いっぱいにする */
-        margin-top: 30px;
+/* スマホ対応 */
+@media (max-width: 992px) {
+    .product-layout-wrapper.reverse {
+        flex-direction: column; /* 画像を上に、テキストを下に */
+    }
+    .product-hero-title {
+        font-size: 3.5rem !important;
+    }
+    .specs-grid {
+        grid-template-columns: 1fr; /* スマホは1列 */
     }
 }
+/* ===================================
+   Key Features & Media Gallery (ダークテーマ)
+   =================================== */
+
+/* Key Features セクション */
+.key-features {
+    background-color: #1a1a1a;
+    padding: 60px 0;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4列並び */
+    gap: 30px;
+    text-align: center;
+}
+
+.feature-item i {
+    font-size: 2.5rem;
+    color: #ffcc00; /* アクセントの黄色 */
+    margin-bottom: 15px;
+    display: block;
+}
+
+.feature-item span {
+    display: block;
+    font-weight: bold;
+    font-size: 1rem;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+.feature-item p {
+    font-size: 0.8rem;
+    color: #aaa;
+    line-height: 1.5;
+}
+
+/* Media Gallery セクション */
+.media-gallery {
+    background-color: #262626;
+    padding: 80px 0;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3列並び */
+    gap: 20px;
+}
+
+.gallery-item {
+    overflow: hidden;
+    border-radius: 4px;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.gallery-item img:hover {
+    transform: scale(1.05); /* ホバー時に少しズーム */
+}
+
+/* スマホ対応 */
+@media (max-width: 768px) {
+    .features-grid {
+        grid-template-columns: repeat(2, 1fr); /* スマホは2列 */
+    }
+    .gallery-grid {
+        grid-template-columns: 1fr; /* スマホは1列 */
+    }
+}
+/* ===================================
+   車種別テーマカラー設定
+   =================================== */
+
+/* 車種2: IBIS (レーシング・空冷) - 深みのあるワインレッド系 */
+.theme-ibis .product-page-dark,
+.theme-ibis .key-features { background-color: #1a0f0f !important; }
+.theme-ibis .technical-specs,
+.theme-ibis .media-gallery { background-color: #261616 !important; }
+
+/* 車種3: RAVEN (トルク・水冷) - 深みのあるフォレストグリーン系 */
+.theme-raven .product-page-dark,
+.theme-raven .key-features { background-color: #0f1a16 !important; }
+.theme-raven .technical-specs,
+.theme-raven .media-gallery { background-color: #162620 !important; }
