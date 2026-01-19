@@ -152,11 +152,23 @@ header {
   z-index: 2;
 }
 
+/* トップページのモデル名のデザイン変更 */
 .hero-slider .hero-text h1 {
-  font-size: 2.5rem;
-  text-shadow: none;
+  font-family: 'Michroma', sans-serif; /* 力強いフォントに変更 */
+  font-size: 3rem;
+  font-weight: 700;
+  text-transform: uppercase;         /* 英語の場合、大文字で固定して力強さを出す */
+  letter-spacing: 0.12em;             /* 文字の間隔を少し広げて高級感を出す */
+  margin: 0 0 10px 0;
   color: #fff;
-  margin: 0 0 15px 0;
+  line-height: 1.1;
+}
+
+/* スマホでのサイズ微調整 */
+@media (max-width: 768px) {
+  .hero-slider .hero-text h1 {
+    font-size: 2rem;               /* スマホでは画面からはみ出さない程度に調整 */
+  }
 }
 
 .hero-slider .hero-text p {
@@ -294,7 +306,6 @@ header {
   /* スライドアップのアニメーション */
 }
 
-/* ↓ この新しいCSSルールを追記 ↓ */
 .news-card-always-visible {
   padding: 20px;
   /* 常に表示される部分のパディング */
@@ -302,7 +313,6 @@ header {
   /* テキスト左揃え */
 }
 
-/* ↓ このルールを新しく追加 */
 .news-card:hover .news-card-content {
   transform: translateY(0%);
 }
@@ -395,91 +405,83 @@ header {
 /* ===================================
    フッター (新しいデザイン)
    =================================== */
+/* style.css のフッター関連（360行目付近〜）を以下に更新 */
+
+/* style.css のフッター関連を更新 */
+
 footer {
-  color: #333;
-  font-size: 14px;
-  line-height: 1.6;
+  background-color: #1a1a1a;
+  color: #ffffff;
+  border-top: 1px solid #333;
 }
 
-.footer-main {
-  background-color: #f8f8f8;
+.footer-accordion-container {
+  max-width: 100%; /* 画面幅いっぱいに広げる */
+  margin: 0 auto;
+}
+
+.accordion-item {
+  border-bottom: 1px solid #333;
+}
+
+.accordion-header {
   display: flex;
-  justify-content: center;
-  /* ← 中央配置に変更 */
-  padding: 60px 40px;
-  border-bottom: 1px solid #e0e0e0;
-  gap: 100px;
-}
-
-.footer-column {
-  text-align: left;
-}
-
-.footer-column h4 {
+  justify-content: space-between;
+  align-items: center;
+  padding: 25px 40px; /* 左右の余白を多めにとる */
+  margin: 0 !important;
+  cursor: pointer;
   font-size: 16px;
-  margin-top: 0;
-  margin-bottom: 20px;
   font-weight: bold;
 }
 
-.footer-column ul {
+.toggle-icon {
+  font-size: 20px;
+  transition: transform 0.3s ease;
+}
+
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease-out;
+  background-color: #111;
+  padding: 0 40px;
   list-style: none;
-  padding: 0;
   margin: 0;
 }
 
-.footer-column li {
-  margin-bottom: 10px;
+.accordion-item.active .accordion-content {
+  max-height: 600px;
+  padding: 20px 40px 40px 40px;
 }
 
-.footer-column a {
+.accordion-item.active .toggle-icon {
+  transform: rotate(45deg); /* 「＋」を「×」のように回転 */
+}
+
+.accordion-content li {
+  margin-bottom: 20px;
+}
+
+.accordion-content a {
+  color: #ccc;
   text-decoration: none;
-  color: #555;
-  transition: color 0.3s;
+  font-size: 15px;
 }
 
-.footer-column a:hover {
-  color: #000;
-}
-
-.footer-bottom {
-  background-color: #333a40;
-  color: #fff;
+/* SNSアイコンの配置調整 */
+.footer-social {
   display: flex;
-  justify-content: center;
-  /* ← これが左右に振り分けるための重要な指定です */
-  align-items: center;
-  padding: 20px 40px;
+  gap: 30px;
+  padding-top: 10px;
 }
 
-.footer-bottom a {
-  color: #fff;
-  text-decoration: none;
-  margin-right: 20px;
-  transition: opacity 0.3s;
-}
-
-.footer-bottom a:hover {
-  opacity: 0.8;
-}
-
-.footer-social a {
-  margin-left: 25px;
-  font-size: 24px;
-}
-
-.footer-social a i {
-  color: #fff;
-  transition: color 0.3s ease;
-}
-
-.footer-copyright {
-  background-color: #333a40;
-  color: #aaa;
-  padding: 20px 40px;
+.footer-copyright-container {
+  text-align: center;
+  padding: 50px 20px;
   font-size: 12px;
-  text-align: left;
-  border-top: 1px solid #4a4a4a;
+  color: #666;
+  line-height: 2;
 }
 
 /* ===================================
@@ -804,7 +806,7 @@ footer {
 }
 
 .product-hero-section {
-    padding: 80px 0;
+    padding: 40px 0;
 }
 
 /* 2カラムレイアウト（テキスト左、画像右） */
@@ -868,8 +870,8 @@ footer {
    =================================== */
 .technical-specs {
     background-color: #262626; /* セクションの区切り */
-    padding: 80px 0;
-    margin-top: 50px;
+    padding: 30px 0 80px 0;
+    margin-top: 0px;
 }
 
 .specs-heading {
@@ -922,7 +924,7 @@ footer {
 /* Key Features セクション */
 .key-features {
     background-color: #1a1a1a;
-    padding: 60px 0;
+    padding: 20px 0 ;
 }
 
 .features-grid {

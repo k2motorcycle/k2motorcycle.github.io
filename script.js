@@ -46,16 +46,23 @@ async function loadNews() {
     const response = await fetch('./news.json');
     if (!response.ok) throw new Error('Network response was not ok');
     
-    const newsData = await response.json();
+    // データを取得
+    let newsData = await response.json();
+
+    // ▼【ここを追加】IDの小さい順（1, 2...）＝古い順に並び替える
+    newsData.sort((a, b) => a.id - b.id);
 
     // 1. トップページ用の表示 (id="top-news-container")
     const topContainer = document.getElementById('top-news-container');
     if (topContainer) {
+      // 並び替えた後のデータから先頭4つを表示
       const topNews = newsData.slice(0, 4);
       topContainer.innerHTML = topNews.map(item => `
         <article class="news-card">
           <a href="${item.url}">
-            <img src="${item.image}" alt="${item.title}">
+            <div class="news-card-image-wrapper">
+              <img src="${item.image}" alt="${item.title}">
+            </div>
             <div class="news-card-always-visible">
               <time>${item.date}</time>
               <h3 class="news-title">${item.title}</h3>
@@ -92,3 +99,55 @@ async function loadNews() {
 
 // ページ読み込み時に実行
 document.addEventListener('DOMContentLoaded', loadNews);
+
+// フッターのアコーディオン開閉制御
+document.querySelectorAll('.accordion-header').forEach(header => {
+  header.addEventListener('click', () => {
+    const item = header.parentElement;
+    // 他の項目を閉じたい場合はここに追加処理が必要ですが、
+    // 参考サイトのように複数開ける形式にしています
+    item.classList.toggle('active');
+  });
+});
+// 共通ヘッダー・フッターの読み込み関数
+function loadCommonParts() {
+  // ヘッダーを読み込む
+  fetch('header-common.html')
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById('header-placeholder').innerHTML = data;
+      // 読み込み後にハンバーガーメニューのイベントを再設定
+      initHamburger(); 
+    });
+
+  // フッターを読み込む
+  fetch('footer-common.html')
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById('footer-placeholder').innerHTML = data;
+      // 読み込み後にアコーディオンのイベントを再設定
+      initFooterAccordion();
+    });
+}
+
+// 既存のイベント設定を関数化して、読み込み後にも実行できるようにする
+function initHamburger() {
+  const hamburger = document.querySelector(".hamburger-icon");
+  const navMenu = document.querySelector(".navigation-menu");
+  if (hamburger && navMenu) {
+    hamburger.addEventListener("click", () => {
+      navMenu.classList.toggle("active");
+    });
+  }
+}
+
+function initFooterAccordion() {
+  document.querySelectorAll('.accordion-header').forEach(header => {
+    header.addEventListener('click', () => {
+      header.parentElement.classList.toggle('active');
+    });
+  });
+}
+
+// ページ読み込み時に実行
+document.addEventListener('DOMContentLoaded', loadCommonParts);
