@@ -1,56 +1,107 @@
 /* ===================================
-   基本設定
+   CSS変数定義
    =================================== */
-body,
-html {
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif;
+:root {
+  /* カラーパレット */
+  --color-white: #fff;
+  --color-black: #000;
+  --color-dark: #333;
+  --color-dark-bg: #1a1a1a;
+  --color-dark-alt: #262626;
+  --color-gray-light: #f8f8f8;
+  --color-gray: #666;
+  --color-gray-muted: #777;
+  --color-gray-border: #e0e0e0;
+  --color-gray-border-light: #eee;
+  --color-gray-text: #ccc;
+  --color-gray-dark: #999;
+  --color-gray-darker: #aaa;
+  --color-accent: #ffcc00;
+  --color-primary: #007bff;
+  
+  /* トランジション */
+  --transition-fast: 0.3s ease;
+  --transition-medium: 0.4s ease;
+  
+  /* ボーダー */
+  --border-light: 1px solid var(--color-gray-border-light);
+  --border-medium: 1px solid var(--color-gray-border);
+  --border-dark: 1px solid #333;
+  
+  /* シャドウ */
+  --shadow-card: 0 5px 15px rgba(0, 0, 0, 0.08);
+  --shadow-hover: 0 5px 20px rgba(0, 0, 0, 0.1);
 }
 
-* {
-  box-sizing: border-box;
+/* ===================================
+   基本設定
+   =================================== */
+*, *::before, *::after { box-sizing: border-box; }
+body, html { margin: 0; padding: 0; font-family: sans-serif; }
+
+/* ===================================
+   共通コンポーネント
+   =================================== */
+.section-title {
+  text-align: center;
+  font-size: 2.5rem;
+  margin: 0 0 60px;
+  font-weight: bold;
+  color: var(--color-dark);
 }
+
+.btn {
+  display: inline-block;
+  background-color: var(--color-dark);
+  color: var(--color-white);
+  padding: 12px 25px;
+  margin-bottom: 30px;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: background-color var(--transition-fast);
+}
+.btn:hover { background-color: #555; }
+
+.btn-outline {
+  display: inline-block;
+  border: 2px solid var(--color-white);
+  color: var(--color-white);
+  padding: 12px 30px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: all var(--transition-fast);
+}
+.btn-outline:hover { background-color: var(--color-white); color: var(--color-black); }
 
 /* ===================================
    ヘッダー
    =================================== */
-/* 新しいヘッダー設定 */
 header {
   position: relative;
   width: 100%;
-  background-color: #ffffff;
-  border-bottom: 1px solid #eeeeee;
+  background-color: var(--color-white);
+  border-bottom: var(--border-light);
   display: flex;
-  justify-content: space-between; /* 【変更】ロゴを左、アイコンを右に配置 */
-  align-items: center;            /* 【追加】上下の中央に揃える */
-  padding: 5px 20px;              /* 【変更】上下に5px、左右に20pxの余白 */
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 20px;
 }
 
-.logo {
-  display: block;
-  width: 20%;            /* 通常は画面の40%の大きさ */
-  min-width: 250px;      /* 【追加】これ以上小さくならない最小サイズ */
-}
-.logo img {
-  width: 100%;            /* 枠に合わせて広がる */
-  height: auto;           /* 縦横比を維持（1024:161を守る） */
-  display: block;         /* 下の隙間を消す */
-}
+.logo { display: block; width: 20%; min-width: 250px; }
+.logo img { width: 100%; height: auto; display: block; }
 
-/* ハンバーガーアイコンを右上に固定する */
 .hamburger-icon {
   background: transparent;
   border: none;
   cursor: pointer;
   z-index: 21;
-  display: block;        /* 自然な要素として扱う */
-  padding: 10px;         /* 押しやすいように内側に余白 */
-  margin: 0;             /* 余計なマージンを消す */
+  display: block;
+  padding: 10px;
+  margin: 0;
 }
-
 .hamburger-icon span {
-  background-color: #333333;
+  background-color: var(--color-dark);
   display: block;
   width: 30px;
   height: 3px;
@@ -68,378 +119,168 @@ header {
   box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
   z-index: 20;
 }
-
-.navigation-menu.active {
-  display: block;
-}
-
-.navigation-menu ul {
-  list-style: none;
-  padding: 80px 0 0 0;
-  margin: 0;
-}
-
+.navigation-menu.active { display: block; }
+.navigation-menu ul { list-style: none; padding: 80px 0 0; margin: 0; }
 .navigation-menu li a {
   display: block;
   padding: 15px 40px;
   text-decoration: none;
-  color: #ffffff;
+  color: var(--color-white);
   font-size: 18px;
 }
-
-.navigation-menu li a:hover {
-  background-color: rgba(255, 255, 255, 0.1);
-}
+.navigation-menu li a:hover { background-color: rgba(255, 255, 255, 0.1); }
 
 /* ===================================
    ヒーロースライダー
    =================================== */
 .hero-slider {
   width: 100%;
-  background-color: #000;
+  background-color: var(--color-black);
   position: relative;
-  --swiper-navigation-color: #ffffff;
-  border-top: 5px solid #007bff;
-  /* 青い線 */
+  --swiper-navigation-color: var(--color-white);
+  border-top: 5px solid var(--color-primary);
 }
-
 .hero-slider .swiper-slide {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  /* ← 上揃えに変更 */
   align-items: center;
   text-align: center;
-  color: white;
-  padding: 0 20px 20px 20px;
-  /* ← 上の隙間(padding)を0にする */
-  box-sizing: border-box;
+  color: var(--color-white);
+  padding: 0 20px 20px;
 }
 
-/* PC用のスタイル（画面幅が769px以上の場合） */
-@media (min-width: 769px) {
-  .hero-slider .swiper-slide {
-    flex-direction: row;
-    /* 横並び */
-    justify-content: space-between;
-    /* 左右に振り分け */
-    align-items: flex-start;
-    padding: 0 8%;
-    /* ← 左右の余白を追加 */
-  }
-
-  .hero-text {
-    width: 45%;
-    text-align: left;
-    order: 1;
-    /* テキストが先 */
-    align-self: center;
-  }
-
-  .hero-product-image {
-    width: 50%;
-    /* 幅をスライドの50%に固定 */
-    height: 70%;
-    /* 高さをスライドの70%に固定 */
-    object-fit: contain;
-    /* 比率を保ったまま枠内に収める */
-    order: 2;
-  }
-}
-
-/* 以下はスライダー内のテキストやボタンの共通スタイル */
-.hero-text {
-  z-index: 2;
-}
-
-/* トップページのモデル名のデザイン変更 */
+.hero-text { z-index: 2; }
 .hero-slider .hero-text h1 {
-  font-family: 'Michroma', sans-serif; /* 力強いフォントに変更 */
+  font-family: 'Michroma', sans-serif;
   font-size: 3rem;
   font-weight: 700;
-  text-transform: uppercase;         /* 英語の場合、大文字で固定して力強さを出す */
-  letter-spacing: 0.12em;             /* 文字の間隔を少し広げて高級感を出す */
-  margin: 0 0 10px 0;
-  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin: 0 0 10px;
+  color: var(--color-white);
   line-height: 1.1;
 }
-
-/* スマホでのサイズ微調整 */
-@media (max-width: 768px) {
-  .hero-slider .hero-text h1 {
-    font-size: 2rem;               /* スマホでは画面からはみ出さない程度に調整 */
-  }
-}
-
 .hero-slider .hero-text p {
   font-size: 1.1rem;
-  text-shadow: none;
-  color: #ccc;
+  color: var(--color-gray-text);
   margin-bottom: 30px;
 }
 
-.btn-outline {
-  display: inline-block;
-  border: 2px solid #fff;
-  color: #fff;
-  padding: 12px 30px;
-  text-decoration: none;
-  font-weight: bold;
-  transition: all 0.3s;
+.hero-product-image {
+  -webkit-mask-image: linear-gradient(to right, transparent, black 20%, black 80%, transparent);
+  mask-image: linear-gradient(to right, transparent, black 20%, black 80%, transparent);
 }
 
-.btn-outline:hover {
-  background-color: #fff;
-  color: #000;
-}
-
-/* ページネーション（点々）のスタイル */
 .pagination-container {
-  background-color: #fff;
+  background-color: var(--color-white);
   padding: 20px 0;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-
-.pagination-container .swiper-pagination {
-  position: relative;
-  margin-top: 0px;
-}
-
+.pagination-container .swiper-pagination { position: relative; }
 .pagination-container .swiper-pagination-bullet {
-  background-color: #000;
+  background-color: var(--color-black);
   width: 10.5px;
   height: 10.5px;
   opacity: 0.5;
 }
-
-.pagination-container .swiper-pagination-bullet-active {
-  opacity: 1;
-  transform: scale(1.4);
-}
+.pagination-container .swiper-pagination-bullet-active { opacity: 1; transform: scale(1.4); }
 
 /* ===================================
    News & Events セクション
    =================================== */
-.news-section {
-  padding: 80px 40px;
-  background-color: #fff;
-}
-
-.news-section .section-title {
-  text-align: center;
-  font-size: 2.5rem;
-  margin-top: 0;
-  margin-bottom: 60px;
-  font-weight: bold;
-  color: #333;
-}
+.news-section { padding: 80px 40px; background-color: var(--color-white); }
 
 .news-container {
   display: flex;
   justify-content: flex-start;
-  /* 左端から開始するように変更 */
   gap: 30px;
   flex-wrap: nowrap;
-  /* ← 折り返さず、横一列を維持 */
   max-width: 1200px;
   margin: 0 auto;
   overflow-x: auto;
-  /* ← 横にはみ出した部分をスクロール可能にする */
   padding: 10px;
-  /* スクロール領域の内側に少し余白を追加 */
 }
 
 .news-card {
   width: 270px;
-  border: 1px solid #e0e0e0;
-  transition: box-shadow 0.3s ease;
+  border: var(--border-medium);
+  transition: box-shadow var(--transition-fast);
   position: relative;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   flex-shrink: 0;
-  /* ← この行を追加 */
 }
-
-.news-card:hover {
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-}
-
-.news-card a {
-  text-decoration: none;
-  color: inherit;
-  display: block;
-}
-
-/* ニュースカードの画像を枠内に収めて全体を表示する */
+.news-card:hover { box-shadow: var(--shadow-hover); }
+.news-card a { text-decoration: none; color: inherit; display: block; }
 .news-card img {
   width: 100%;
-  height: 180px;         /* 高さは180pxで固定（これで位置が揃います） */
-  object-fit: contain;   /* 【変更】coverからcontainに変えて全体を表示 */
-  background-color: #fff; /* 【追加】余白部分を白にして背景に馴染ませる */
+  height: 180px;
+  object-fit: contain;
+  background-color: var(--color-white);
   display: block;
-  padding: 10px;         /* 【追加】少し内側に余白を作るとより綺麗に見えます */
+  padding: 10px;
 }
 
-/* 画像の枠に背景色をつけておく（読み込み中などの空白対策） */
-.news-card-image-wrapper {
-  background-color: #f0f0f0;
-  overflow: hidden;
-}
-
+.news-card-image-wrapper { background-color: #f0f0f0; overflow: hidden; }
 .news-card-content {
   padding: 20px;
-  /* ← 元のパディングに戻す */
-  box-sizing: border-box;
-  /* ここから下が、ホバー時にスライドアップする部分のスタイル */
   position: absolute;
-  /* 親要素を基準に絶対配置 */
   bottom: 0;
   left: 0;
   width: 100%;
   background-color: rgba(255, 255, 255, 0.95);
   transform: translateY(100%);
-  /* 初期状態では完全に下に隠す */
-  transition: transform 0.3s ease-out;
-  /* スライドアップのアニメーション */
+  transition: transform var(--transition-fast);
 }
+.news-card-always-visible { padding: 20px; text-align: left; }
+.news-card:hover .news-card-content { transform: translateY(0); }
 
-.news-card-always-visible {
-  padding: 20px;
-  /* 常に表示される部分のパディング */
-  text-align: left;
-  /* テキスト左揃え */
-}
-
-.news-card:hover .news-card-content {
-  transform: translateY(0%);
-}
-
-.news-date {
-  font-size: 14px;
-  color: #777;
-}
-
-.news-title {
-  font-size: 16px;
-  font-weight: bold;
-  margin: 10px 0 0 0;
-  line-height: 1.5;
-}
+.news-date { font-size: 14px; color: var(--color-gray-muted); }
+.news-title { font-size: 16px; font-weight: bold; margin: 10px 0 0; line-height: 1.5; }
 
 /* ===================================
-   製品紹介セクション (カード型)
+   製品紹介セクション
    =================================== */
-.products {
-  padding: 80px 40px;
-  background-color: #f8f8f8;
-  /* 背景色を少し変えて区別 */
-}
-
-.products .section-title {
-  text-align: center;
-  font-size: 2.5rem;
-  margin-top: 0;
-  margin-bottom: 60px;
-  font-weight: bold;
-  color: #333;
-}
-
-.product-container {
-  display: flex;
-  justify-content: center;
-  gap: 40px;
-  flex-wrap: wrap;
-}
+.products { padding: 80px 40px; background-color: var(--color-gray-light); }
+.product-container { display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; }
 
 .product-card {
   width: 340px;
-  background-color: #fff;
+  background-color: var(--color-white);
   border-radius: 15px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+  box-shadow: var(--shadow-card);
   overflow: hidden;
   text-align: center;
-  transition: transform 0.3s, box-shadow 0.3s;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
 }
-
-.product-card:hover {
-  transform: translateY(-10px);
-}
-
-.product-card img {
-  width: 100%;
-  height: 240px;
-  object-fit: cover;
-}
-
-.product-card h3 {
-  font-size: 1.5rem;
-  margin: 25px 0 15px 0;
-}
-
-.product-card p {
-  font-size: 1rem;
-  color: #666;
-  padding: 0 25px;
-  margin-bottom: 25px;
-}
-
-.btn {
-  display: inline-block;
-  background-color: #333;
-  color: white;
-  padding: 12px 25px;
-  margin-bottom: 30px;
-  text-decoration: none;
-  border-radius: 5px;
-  font-weight: bold;
-  transition: background-color 0.3s;
-}
-
-.btn:hover {
-  background-color: #555;
-}
+.product-card:hover { transform: translateY(-10px); }
+.product-card img { width: 100%; height: 240px; object-fit: cover; }
+.product-card h3 { font-size: 1.5rem; margin: 25px 0 15px; }
+.product-card p { font-size: 1rem; color: var(--color-gray); padding: 0 25px; margin-bottom: 25px; }
 
 /* ===================================
-   フッター (新しいデザイン)
+   フッター
    =================================== */
-/* style.css のフッター関連（360行目付近〜）を以下に更新 */
+footer { background-color: var(--color-dark-bg); color: var(--color-white); border-top: var(--border-dark); }
+.footer-accordion-container { max-width: 100%; margin: 0 auto; }
 
-/* style.css のフッター関連を更新 */
-
-footer {
-  background-color: #1a1a1a;
-  color: #ffffff;
-  border-top: 1px solid #333;
-}
-
-.footer-accordion-container {
-  max-width: 100%; /* 画面幅いっぱいに広げる */
-  margin: 0 auto;
-}
-
-.accordion-item {
-  border-bottom: 1px solid #333;
-}
-
+.accordion-item { border-bottom: var(--border-dark); }
 .accordion-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 25px 40px; /* 左右の余白を多めにとる */
+  padding: 25px 40px;
   margin: 0 !important;
   cursor: pointer;
   font-size: 16px;
   font-weight: bold;
 }
 
-.toggle-icon {
-  font-size: 20px;
-  transition: transform 0.3s ease;
-}
-
+.toggle-icon { font-size: 20px; transition: transform var(--transition-fast); }
 .accordion-content {
   max-height: 0;
   overflow: hidden;
@@ -449,168 +290,41 @@ footer {
   list-style: none;
   margin: 0;
 }
+.accordion-item.active .accordion-content { max-height: 600px; padding: 20px 40px 40px; }
+.accordion-item.active .toggle-icon { transform: rotate(45deg); }
+.accordion-content li { margin-bottom: 20px; }
+.accordion-content a { color: var(--color-gray-text); text-decoration: none; font-size: 15px; }
 
-.accordion-item.active .accordion-content {
-  max-height: 600px;
-  padding: 20px 40px 40px 40px;
-}
-
-.accordion-item.active .toggle-icon {
-  transform: rotate(45deg); /* 「＋」を「×」のように回転 */
-}
-
-.accordion-content li {
-  margin-bottom: 20px;
-}
-
-.accordion-content a {
-  color: #ccc;
-  text-decoration: none;
-  font-size: 15px;
-}
-
-/* SNSアイコンの配置調整 */
-.footer-social {
-  display: flex;
-  gap: 30px;
-  padding-top: 10px;
-}
+.footer-social { display: flex; gap: 30px; padding-top: 10px; }
+.footer-social a:hover .fa-facebook-f { color: #1877f2; }
+.footer-social a:hover .fa-x-twitter { color: var(--color-black); }
+.footer-social a:hover .fa-instagram { color: #e1306c; }
+.footer-social a:hover .fa-youtube { color: #f00; }
 
 .footer-copyright-container {
   text-align: center;
   padding: 50px 20px;
   font-size: 12px;
-  color: #666;
+  color: var(--color-gray);
   line-height: 2;
 }
 
 /* ===================================
-   スマートフォン用の設定
-   =================================== */
-@media (max-width: 768px) {
-  header {
-    padding: 0px 0px;
-  }
-
-  .hero-product-image {
-    max-width: 60%;
-    /* スマホでは横幅を90%に */
-    max-height: 40%;
-    /* 高さをスライダーの40%に制限 */
-    margin-bottom: 30px;
-    /* テキストとの間に余白を追加 */
-    order: 1;
-    /* 表示順を1番目に (画像が先) */
-  }
-
-  .hero-text {
-    width: 90%;
-    text-align: center;
-    order: 2;
-    /* 表示順を2番目に (テキストが後) */
-  }
-
-  .hero-slider .hero-text h1 {
-    font-size: 2rem;
-  }
-
-  .hero-slider .hero-text p {
-    font-size: 1rem;
-  }
-
-  .news-card {
-    width: 170px;
-    /* PC用の270pxから少し小さくします */
-  }
-
-  .news-card .news-title {
-    font-size: 14px;
-    /* タイトルの文字サイズを少し小さくします */
-  }
-
-  /* フッターのスマホ用設定 */
-  .footer-main {
-    flex-direction: row;
-    /* ← columnからrowに変更：横並びにする */
-    flex-wrap: wrap;
-    /* ← 項目が多ければ折り返す */
-    justify-content: space-around;
-    /* ← 項目を均等に配置する */
-    gap: 20px;
-    /* ← 項目間の隙間を設定する */
-  }
-
-  .footer-column {
-    flex-basis: 28%;
-    margin-bottom: 20px;
-    text-align: left;
-  }
-
-  .footer-column h4 {
-    text-align: center;
-  }
-
-  .footer-column ul {
-    text-align: center;
-  }
-
-  .footer-bottom {
-    flex-direction: column;
-    gap: 15px;
-  }
-
-  .footer-legal {
-    margin-bottom: 15px;
-  }
-
-  /* About Usページのスマホ用画像サイズ調整 */
-  .page-main-image {
-    width: 100%;
-    /* 横幅を画面いっぱいに */
-    height: auto;
-    /* 高さは自動で調整 */
-  }
-}
-
-.news-grid-item:hover .news-grid-content {
-  transform: translateY(0);
-  opacity: 1;
-}
-
-/* ===================================
-   ニュースページ（サイズ制限版）
+   ニュースページ（グリッド）
    =================================== */
 .news-grid {
   display: grid;
-  /* auto-fit を auto-fill に変更し、1fr ではなく最大 450px に制限します */
-  grid-template-columns: repeat(auto-fill, minmax(300px, 450px)); 
+  grid-template-columns: repeat(auto-fill, minmax(300px, 450px));
   gap: 30px;
-  justify-content: center; /* 記事が少ない時でも中央に寄せます */
+  justify-content: center;
   margin: 0 auto;
-  max-width: 1400px;       /* グリッド全体の最大幅も制限 */
+  max-width: 1400px;
 }
 
-.news-grid-item {
-  border: 1px solid #e0e0e0;
-  position: relative;
-  /* 子要素を絶対配置する際の基準 */
-  overflow: hidden;
-  /* はみ出した子要素を隠す */
-}
+.news-grid-item { border: var(--border-medium); position: relative; overflow: hidden; }
+.news-grid-item a { text-decoration: none; color: inherit; display: block; }
 
-.news-grid-item a {
-  text-decoration: none;
-  color: inherit;
-  display: block;
-}
-
-.news-image-container {
-  width: 100%;
-  padding-top: 66.66%;
-  /* アスペクト比 3:2 */
-  position: relative;
-}
-
+.news-image-container { width: 100%; padding-top: 66.66%; position: relative; }
 .news-image-container img {
   position: absolute;
   top: 0;
@@ -618,14 +332,10 @@ footer {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.4s ease;
-  /* ホバー時のズーム効果 */
+  transition: transform var(--transition-medium);
 }
-
-.news-grid-item:hover .news-image-container img {
-  transform: scale(1.1);
-  /* ホバー時に画像を少し拡大 */
-}
+.news-grid-item:hover .news-image-container img { transform: scale(1.1); }
+.news-grid-item:hover .news-grid-content { transform: translateY(0); opacity: 1; }
 
 .news-grid-content {
   position: absolute;
@@ -633,377 +343,237 @@ footer {
   left: 0;
   width: 100%;
   background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
-  /* 画像の下部に黒いグラデーションを追加 */
-  padding: 40px 25px 20px 25px;
-  box-sizing: border-box;
+  padding: 40px 25px 20px;
 }
-
-.news-date {
-  font-size: 14px;
-  color: #fff;
-  /* 文字色を白に */
-}
-
+.news-grid-content .news-date { color: var(--color-white); }
 .news-title-small {
   font-size: 18px;
   font-weight: bold;
-  margin: 5px 0 0 0;
+  margin: 5px 0 0;
   line-height: 1.5;
-  color: #fff;
-  /* 文字色を白に */
+  color: var(--color-white);
 }
 
 /* ===================================
    ニュース記事詳細ページ
    =================================== */
-.article-container {
-  max-width: 800px;
-  /* 記事の最大幅を少し狭めて読みやすく */
-}
-
+.article-container { max-width: 800px; margin: 0 auto; }
 .article-header {
   margin-bottom: 30px;
-  text-align: center;
-  border-bottom: 1px solid #e0e0e0;
+  text-align: left !important;
+  border-bottom: var(--border-medium);
   padding-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
-
-.article-title {
-  font-size: 2.2rem;
-  margin: 10px 0 0 0;
-}
-
 .article-date {
-  color: #777;
+  display: block;
+  color: var(--color-gray-muted);
   font-size: 1rem;
+  margin-bottom: 10px;
+  text-align: left;
+  white-space: nowrap;
+  width: 100%;
 }
-
+.article-title {
+  display: block;
+  font-size: 2.2rem;
+  margin: 0;
+  line-height: 1.3;
+  text-align: left !important;
+  width: 100%;
+}
 .article-image {
-  display: block;        /* 中央寄せのためにブロック要素にする */
-  width: 100%;           /* 基本は枠に合わせる */
-  max-width: 600px;      /* 【追加】これ以上大きくならない最大サイズ（お好みで調整） */
+  display: block;
+  width: 100%;
+  max-width: 600px;
   height: auto;
-  margin: 0 auto 40px;   /* 【追加】左右中央寄せにし、下に40pxの余白 */
-  object-fit: contain;   /* 比率を保つ */
-}
-
-.article-content {
-  font-size: 1.1rem;
-  line-height: 1.8;
-}
-
-.article-content h2 {
-  font-size: 1.8rem;
-  margin-top: 40px;
-  border-bottom: 2px solid #f0f0f0;
-  padding-bottom: 10px;
-}
-
-.back-link-container {
-  text-align: center;
-  margin-top: 60px;
-  padding-top: 30px;
-  border-top: 1px solid #e0e0e0;
-}
-
-.back-link {
-  text-decoration: none;
-  font-weight: bold;
-  color: #333;
+  margin: 0 0 40px;
+  object-fit: contain;
 }
 
 /* ===================================
    Contact Us
    =================================== */
-.form-group {
-  margin-bottom: 25px;
-}
-
-.form-label {
-  display: block;
-  /* ラベルをブロック要素にして改行させる */
-  font-size: 16px;
-  font-weight: 600;
-  color: #333;
-  margin-bottom: 8px;
-}
-
+.form-group { margin-bottom: 25px; }
+.form-label { display: block; font-size: 16px; font-weight: 600; color: var(--color-dark); margin-bottom: 8px; }
 .form-input {
   width: 100%;
   padding: 12px 15px;
   font-size: 16px;
   color: #555;
-  background-color: #fff;
+  background-color: var(--color-white);
   border: 1px solid #ddd;
   border-radius: 8px;
-  box-sizing: border-box;
-  /* paddingを含めてwidth:100%にする */
-  transition: border-color 0.3s, box-shadow 0.3s;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
 }
 
 /* ===================================
-   下層ページのレイアウト調整
+   下層ページ
    =================================== */
-.page-container {
-  margin: 0 auto;
-  max-width: 80%;
-  padding-top: 100px;
-  /* ヘッダーの高さ分くらい、上に余白をあける */
-}
+.page-container { margin: 0 auto; max-width: 80%; padding: 100px 0; }
 
-/* ===================================
-   フッターのSNSアイコン ホバーカラー
-   =================================== */
-
-/* Facebook */
-.footer-social a:hover .fa-facebook-f {
-  color: #1877f2;
-}
-
-/* X (Twitter) */
-.footer-social a:hover .fa-x-twitter {
-  color: #000000;
-}
-
-/* Instagram */
-.footer-social a:hover .fa-instagram {
-  color: #e1306c;
-}
-
-/* YouTube */
-.footer-social a:hover .fa-youtube {
-  color: #ff0000;
-}
-
-/* ===================================
-   ヒーロースライダー内の画像にフェード効果を適用
-   =================================== */
-.hero-product-image {
-  -webkit-mask-image: linear-gradient(
-    to right,
-    transparent,
-    black 20%,
-    black 80%,
-    transparent
-  );
-  mask-image: linear-gradient(
-    to right,
-    transparent,
-    black 20%,
-    black 80%,
-    transparent
-  );
-}
 /* ===================================
    車種ページ：カタログ風ダークレイアウト
    =================================== */
+.product-page-dark { background-color: var(--color-dark-bg); color: var(--color-white); min-height: 100vh; }
+.product-hero-section { padding: 40px 0; }
 
-/* ページ全体のダーク化設定 */
-.product-page-dark {
-    background-color: #1a1a1a; /* 高級感のある黒 */
-    color: #ffffff;
-    min-height: 100vh;
-}
-
-.product-hero-section {
-    padding: 40px 0;
-}
-
-/* 2カラムレイアウト（テキスト左、画像右） */
 .product-layout-wrapper.reverse {
-    display: flex;
-    flex-direction: row-reverse; /* 右に配置した画像をPCでは右側に、テキストを左に */
-    gap: 60px;
-    align-items: center;
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 60px;
+  align-items: center;
 }
+.product-image-column { flex: 0 0 60%; }
+.product-image-column img { width: 100%; height: auto; object-fit: contain; }
+.product-info-column { flex: 1; text-align: left; }
 
-.product-image-column {
-    flex: 0 0 60%;
-}
-
-.product-image-column img {
-    width: 100%;
-    height: auto;
-    object-fit: contain;
-}
-
-.product-info-column {
-    flex: 1;
-    text-align: left;
-}
-
-/* 車種名：整理版（不要なグラデーション/影を削除） */
 .product-hero-title {
-    font-size: 5rem !important;
-    font-weight: 900;
-    text-transform: uppercase;
-    margin-bottom: 10px;
-    line-height: 1;
-    color: #ffffff !important;
-    -webkit-text-fill-color: initial !important; /* 古い設定をリセット */
-    background: none !important;
-    text-shadow: none !important;
+  font-size: 5rem !important;
+  font-weight: 900;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  line-height: 1;
+  color: var(--color-white) !important;
+  -webkit-text-fill-color: initial !important;
+  background: none !important;
+  text-shadow: none !important;
 }
 
-/* 価格・説明文のデザイン */
 .price-container {
-    border-bottom: 2px solid #ffcc00; /* アクセントの黄色 */
-    padding-bottom: 10px;
-    margin-bottom: 25px;
-    display: inline-block;
+  border-bottom: 2px solid var(--color-accent);
+  padding-bottom: 10px;
+  margin-bottom: 25px;
+  display: inline-block;
 }
-
-.price-amount {
-    font-size: 1.8rem;
-    font-weight: bold;
-}
-
+.price-amount { font-size: 1.8rem; font-weight: bold; }
 .product-description-text {
-    font-size: 1.1rem;
-    line-height: 1.8;
-    color: #cccccc;
-    margin-bottom: 30px;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--color-gray-text);
+  margin-bottom: 30px;
 }
 
 /* ===================================
-   テクニカルスペック（2列グリッド形式）
+   テクニカルスペック
    =================================== */
-.technical-specs {
-    background-color: #262626; /* セクションの区切り */
-    padding: 30px 0 80px 0;
-    margin-top: 0px;
-}
-
+.technical-specs { background-color: var(--color-dark-alt); padding: 30px 0 10px; }
 .specs-heading {
-    font-size: 1.8rem;
-    letter-spacing: 3px;
-    border-bottom: 1px solid #444;
-    padding-bottom: 20px;
-    margin-bottom: 40px;
+  font-size: 1.8rem;
+  letter-spacing: 3px;
+  border-bottom: 1px solid #444;
+  padding-bottom: 20px;
+  margin-bottom: 40px;
 }
 
-.specs-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr); /* 2列並び */
-    gap: 15px 60px;
-}
-
+.specs-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px 60px; }
 .spec-item {
-    display: flex;
-    justify-content: space-between;
-    border-bottom: 1px solid #3d3d3d;
-    padding: 12px 0;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #3d3d3d;
+  padding: 12px 0;
 }
+.spec-item span { color: var(--color-gray-dark); font-size: 0.9rem; }
+.spec-item strong { color: var(--color-white); font-weight: 600; }
 
-.spec-item span {
-    color: #999;
-    font-size: 0.9rem;
-}
-
-.spec-item strong {
-    color: #fff;
-    font-weight: 600;
-}
-
-/* スマホ対応 */
-@media (max-width: 992px) {
-    .product-layout-wrapper.reverse {
-        flex-direction: column; /* 画像を上に、テキストを下に */
-    }
-    .product-hero-title {
-        font-size: 3.5rem !important;
-    }
-    .specs-grid {
-        grid-template-columns: 1fr; /* スマホは1列 */
-    }
-}
 /* ===================================
-   Key Features & Media Gallery (ダークテーマ)
+   Key Features & Media Gallery
    =================================== */
+.key-features { background-color: var(--color-dark-bg); padding: 10px 0; }
+.features-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; text-align: center; }
+.feature-item i { font-size: 2.5rem; color: var(--color-accent); margin-bottom: 15px; display: block; }
+.feature-item span { display: block; font-weight: bold; font-size: 1rem; margin-bottom: 10px; text-transform: uppercase; }
+.feature-item p { font-size: 0.8rem; color: var(--color-gray-darker); line-height: 1.5; }
 
-/* Key Features セクション */
-.key-features {
-    background-color: #1a1a1a;
-    padding: 20px 0 ;
-}
-
-.features-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr); /* 4列並び */
-    gap: 30px;
-    text-align: center;
-}
-
-.feature-item i {
-    font-size: 2.5rem;
-    color: #ffcc00; /* アクセントの黄色 */
-    margin-bottom: 15px;
-    display: block;
-}
-
-.feature-item span {
-    display: block;
-    font-weight: bold;
-    font-size: 1rem;
-    margin-bottom: 10px;
-    text-transform: uppercase;
-}
-
-.feature-item p {
-    font-size: 0.8rem;
-    color: #aaa;
-    line-height: 1.5;
-}
-
-/* Media Gallery セクション */
-.media-gallery {
-    background-color: #262626;
-    padding: 80px 0;
-}
-
-.gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3列並び */
-    gap: 20px;
-}
-
-.gallery-item {
-    overflow: hidden;
-    border-radius: 4px;
-}
-
+.media-gallery { background-color: var(--color-dark-alt); padding: 10px 0; }
+.gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.gallery-item { overflow: hidden; border-radius: 4px; }
 .gallery-item img {
-    width: 100%;
-    height: 250px;
-    object-fit: cover;
-    transition: transform 0.3s ease;
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  transition: transform var(--transition-fast);
 }
+.gallery-item img:hover { transform: scale(1.05); }
 
-.gallery-item img:hover {
-    transform: scale(1.05); /* ホバー時に少しズーム */
-}
-
-/* スマホ対応 */
-@media (max-width: 768px) {
-    .features-grid {
-        grid-template-columns: repeat(2, 1fr); /* スマホは2列 */
-    }
-    .gallery-grid {
-        grid-template-columns: 1fr; /* スマホは1列 */
-    }
-}
 /* ===================================
-   車種別テーマカラー設定
+   車種別テーマカラー
    =================================== */
-
-/* 車種2: IBIS (レーシング・空冷) - 深みのあるワインレッド系 */
 .theme-ibis .product-page-dark,
 .theme-ibis .key-features { background-color: #1a0f0f !important; }
 .theme-ibis .technical-specs,
 .theme-ibis .media-gallery { background-color: #261616 !important; }
 
-/* 車種3: RAVEN (トルク・水冷) - 深みのあるフォレストグリーン系 */
 .theme-raven .product-page-dark,
 .theme-raven .key-features { background-color: #0f1a16 !important; }
 .theme-raven .technical-specs,
 .theme-raven .media-gallery { background-color: #162620 !important; }
+
+/* ===================================
+   会社概要テーブル
+   =================================== */
+.company-profile { width: 100%; border-collapse: collapse; margin-top: 20px; }
+.company-profile th,
+.company-profile td {
+  padding: 15px 10px;
+  border-bottom: var(--border-light);
+  text-align: left;
+  vertical-align: top;
+  font-size: 15px;
+  line-height: 1.6;
+}
+.company-profile th {
+  width: 30%;
+  color: var(--color-dark);
+  font-weight: bold;
+  white-space: nowrap;
+  background-color: #fcfcfc;
+}
+
+/* ===================================
+   レスポンシブ対応
+   =================================== */
+@media (min-width: 769px) {
+  .hero-slider .swiper-slide {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 0 8%;
+  }
+  .hero-text { width: 45%; text-align: left; order: 1; align-self: center; }
+  .hero-product-image { width: 50%; height: 70%; object-fit: contain; order: 2; }
+}
+
+@media (max-width: 992px) {
+  .product-layout-wrapper.reverse { flex-direction: column; }
+  .product-hero-title { font-size: 3.5rem !important; }
+  .specs-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 768px) {
+  header { padding: 0; }
+  .hero-product-image { max-width: 60%; max-height: 40%; margin-bottom: 30px; order: 1; }
+  .hero-text { width: 90%; text-align: center; order: 2; }
+  .hero-slider .hero-text h1, .article-title { font-size: 2rem; }
+  .hero-slider .hero-text p { font-size: 1rem; }
+  .news-card { width: 170px; }
+  .news-card .news-title { font-size: 14px; }
+  .footer-main { flex-direction: row; flex-wrap: wrap; justify-content: space-around; gap: 20px; }
+  .footer-column { flex-basis: 28%; margin-bottom: 20px; text-align: left; }
+  .footer-column h4, .footer-column ul { text-align: center; }
+  .footer-bottom { flex-direction: column; gap: 15px; }
+  .footer-legal { margin-bottom: 15px; }
+  .page-main-image { width: 100%; height: auto; }
+  .features-grid { grid-template-columns: repeat(2, 1fr); }
+  .gallery-grid { grid-template-columns: 1fr; }
+  .technical-specs { padding: 30px 0 8px; }
+  .media-gallery { padding: 8px 0; }
+}
+
+@media (max-width: 600px) {
+  .company-profile th, .company-profile td { display: block; width: 100%; border-bottom: none; }
+  .company-profile th { padding-bottom: 5px; color: #888; font-size: 13px; }
+  .company-profile td { padding-top: 0; padding-bottom: 20px; border-bottom: var(--border-light); }
+}
