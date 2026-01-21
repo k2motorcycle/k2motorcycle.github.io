@@ -577,3 +577,25 @@ footer { background-color: var(--color-dark-bg); color: var(--color-white); bord
   .company-profile th { padding-bottom: 5px; color: #888; font-size: 13px; }
   .company-profile td { padding-top: 0; padding-bottom: 20px; border-bottom: var(--border-light); }
 }
+/* ===================================
+   スマホの自動リンク色変換（青色）を無効化
+   =================================== */
+a[x-apple-data-detectors] {
+  color: inherit !important;
+  text-decoration: none !important;
+}
+/* ===================================
+   スペック表の項目名（左側）の改行を防ぐ設定
+   =================================== */
+.spec-item span {
+  white-space: nowrap; /* ここで「改行しない」と指定しています */
+  flex-shrink: 0;      /* 横幅が足りなくなっても縮ませない指定です */
+  margin-right: 10px;  /* 右側の数字との間に少し隙間を確保します */
+}
+
+/* スマホの時だけ文字を少し小さくして収まりやすくする（任意） */
+@media (max-width: 400px) {
+  .spec-item span {
+    font-size: 0.8rem;
+  }
+}
